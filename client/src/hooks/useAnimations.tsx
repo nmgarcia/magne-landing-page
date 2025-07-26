@@ -27,6 +27,12 @@ export function useAnimations() {
 
   const animateHeroElements = () => {
     if (window.anime) {
+      // Set initial visibility to hidden before animation starts
+      const heroElements = document.querySelectorAll('.magnetic-word, .hero-subtitle, .hero-cta, .hero-badge');
+      heroElements.forEach(el => {
+        (el as HTMLElement).style.opacity = '0';
+      });
+
       // Magnetic text animation
       window.anime.timeline({
         easing: 'easeOutExpo',

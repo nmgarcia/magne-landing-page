@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "../hooks/useLanguage";
 import { useAnimations } from "../hooks/useAnimations";
+import emailjs from '@emailjs/browser';
+import { emailjsConfig } from '../config/emailjs';
 
 export default function ContactSection() {
   const { t } = useLanguage();
@@ -13,6 +15,7 @@ export default function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,26 +40,35 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setShowError(false);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      // EmailJS integration
+      await emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_name: 'Magne Software',
         },
-        body: JSON.stringify(formData),
-      });
+        emailjsConfig.publicKey
+      );
 
-      if (response.ok) {
-        setShowSuccess(true);
-        setFormData({ name: "", email: "", subject: "", message: "" });
+      setShowSuccess(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
 
-        setTimeout(() => {
-          setShowSuccess(false);
-        }, 5001);
-      }
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error sending email:", error);
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -298,6 +310,19 @@ export default function ContactSection() {
                 <div className="flex items-center">
                   <i className="fas fa-check-circle text-green-400 mr-3"></i>
                   <span className="text-green-300">{t("successMessage")}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {showError && (
+              <div
+                className="mt-6 p-6 bg-red-500/20 border border-red-500/30 rounded-xl"
+                data-testid="error-message"
+              >
+                <div className="flex items-center">
+                  <i className="fas fa-exclamation-triangle text-red-400 mr-3"></i>
+                  <span className="text-red-300">{t("errorMessage")}</span>
                 </div>
               </div>
             )}
