@@ -17,6 +17,9 @@ A bilingual (Spanish/English) landing page for Magne Software built with React, 
 - Workflow successfully running on port 5000
 - Fixed particle animation z-index issue in services section (January 26, 2025)
 - Optimized particle count and opacity for better performance and visibility
+- Updated typography to match brand identity with Space Grotesk and Poppins fonts (January 26, 2025)
+- Fixed particle animation z-index issue in services section (January 26, 2025)
+- Optimized particle count and opacity for better performance and visibility
 
 ## User Preferences
 - Language: Spanish/English bilingual support required

@@ -76,7 +76,7 @@ export default function ServicesSection() {
           <div className="services-badge inline-flex items-center px-4 py-2 bg-violet-500/20 border border-violet-500/30 rounded-full mb-6">
             <span className="text-sm font-jetbrains text-orange-500">{t('ourServices')}</span>
           </div>
-          <h2 className="services-title text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="services-title font-space-grotesk text-4xl md:text-6xl font-bold mb-6">
             <span>{t('softwareSolutions')}</span>
             <br />
             <span className="magne-gradient-text gradient-shift">{t('attractResults')}</span>
@@ -99,7 +99,7 @@ export default function ServicesSection() {
                 <div className={`service-icon w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   <i className={`${service.icon} text-2xl text-white`}></i>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 group-hover:text-orange-500 transition-colors duration-300">
+                <h3 className="font-space-grotesk text-2xl font-bold mb-4 group-hover:text-orange-500 transition-colors duration-300">
                   {service.title}
                 </h3>
                 <p className="text-gray-300 mb-6 leading-relaxed">

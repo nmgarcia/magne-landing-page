@@ -40,8 +40,8 @@ export default function Navigation() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="logo-container" data-testid="logo">
-            <h1 className="text-2xl font-bold text-white tracking-tight hover:text-orange-500 transition-colors duration-300 cursor-pointer">
-              MAGNE<span className="text-orange-500">.</span>
+            <h1 className="text-2xl font-magne text-white tracking-tight hover:text-orange-500 transition-colors duration-300 cursor-pointer">
+              magne<span className="text-orange-500">.</span>
             </h1>
           </div>
 

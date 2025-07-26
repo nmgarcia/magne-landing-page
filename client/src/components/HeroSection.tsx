@@ -83,7 +83,7 @@ export default function HeroSection() {
           </div>
 
           {/* Main Title with Magnetic Effect */}
-          <h1 className="hero-title text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight">
+          <h1 className="hero-title font-space-grotesk text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight">
             <div className="magnetic-text-line overflow-hidden">
               <span className="magnetic-word inline-block opacity-0" style={{ transform: 'translateY(100px)' }}>
                 {t('heroTitle1')}
