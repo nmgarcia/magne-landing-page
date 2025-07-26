@@ -77,7 +77,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-5xl mx-auto">
           {/* Animated Badge */}
-          <div className="hero-badge inline-flex items-center px-6 py-3 bg-violet-500/20 border border-violet-500/30 rounded-full mb-8 backdrop-blur-sm opacity-0">
+          <div className="hero-badge hero-animate-delay-1 inline-flex items-center px-6 py-3 bg-violet-500/20 border border-violet-500/30 rounded-full mb-8 backdrop-blur-sm">
             <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse mr-3"></div>
             <span className="text-sm font-jetbrains tracking-wider">{t('heroBadge')}</span>
           </div>
@@ -85,30 +85,30 @@ export default function HeroSection() {
           {/* Main Title with Magnetic Effect */}
           <h1 className="hero-title font-montserrat text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight">
             <div className="magnetic-text-line overflow-hidden">
-              <span className="magnetic-word inline-block opacity-0" style={{ transform: 'translateY(100px)' }}>
+              <span className="magnetic-word hero-animate-delay-2 inline-block">
                 {t('heroTitle1')}
               </span>
             </div>
             <div className="magnetic-text-line overflow-hidden">
-              <span className="magnetic-word inline-block magne-gradient-text gradient-shift opacity-0" style={{ transform: 'translateY(100px)' }}>
+              <span className="magnetic-word hero-animate-delay-3 inline-block magne-gradient-text gradient-shift">
                 {t('heroTitle2')}
               </span>
             </div>
             <div className="magnetic-text-line overflow-hidden">
-              <span className="magnetic-word inline-block opacity-0" style={{ transform: 'translateY(100px)' }}>
+              <span className="magnetic-word hero-animate-delay-4 inline-block">
                 {t('heroTitle3')}
               </span>
             </div>
           </h1>
 
           {/* Subtitle with Typewriter Effect */}
-          <p className="hero-subtitle text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed opacity-0" style={{ transform: 'translateY(50px)' }}>
+          <p className="hero-subtitle hero-animate-delay-3 text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
             <span ref={typewriterRef}>{t('heroSubtitle')}</span>
             <span className="typewriter-cursor animate-pulse">|</span>
           </p>
 
           {/* CTA Buttons */}
-          <div className="hero-cta flex flex-col sm:flex-row gap-6 justify-center items-center opacity-0" style={{ transform: 'translateY(30px)' }}>
+          <div className="hero-cta hero-animate-delay-4 flex flex-col sm:flex-row gap-6 justify-center items-center">
             <button 
               onClick={scrollToContact}
               className="magnetic-btn bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-500 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
