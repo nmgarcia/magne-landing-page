@@ -123,7 +123,7 @@ export default function ContactSection() {
               </span>
             </div>
 
-            <h2 className="contact-title font-space-grotesk text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="contact-title font-montserrat text-4xl md:text-5xl font-bold mb-6 leading-tight">
               <span>{t("writeToUs")}</span>
               <br />
               <span className="magne-gradient-text gradient-shift">

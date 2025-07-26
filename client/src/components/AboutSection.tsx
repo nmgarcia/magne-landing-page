@@ -36,7 +36,7 @@ export default function AboutSection() {
               <span className="text-sm font-jetbrains text-orange-500">{t('aboutUs')}</span>
             </div>
             
-            <h2 className="about-title font-space-grotesk text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="about-title font-montserrat text-4xl md:text-5xl font-bold mb-6 leading-tight">
               <span>{t('attractTalent')}</span>
               <br />
               <span className="magne-gradient-text gradient-shift">{t('createSolutions')}</span>
@@ -97,7 +97,7 @@ export default function AboutSection() {
         {/* Core Values */}
         <div className="mt-24">
           <div className="text-center mb-16">
-            <h3 className="values-title font-space-grotesk text-3xl md:text-4xl font-bold mb-4">{t('coreValues')}</h3>
+            <h3 className="values-title font-montserrat text-3xl md:text-4xl font-bold mb-4">{t('coreValues')}</h3>
             <p className="text-gray-300 max-w-2xl mx-auto">{t('valuesDescription')}</p>
           </div>
           
