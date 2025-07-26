@@ -20,7 +20,7 @@ export default function ParticleCanvas() {
     window.addEventListener('resize', resizeCanvas);
 
     const particles: Particle[] = [];
-    const particleCount = 50;
+    const particleCount = 30;
 
     class Particle {
       x: number;
@@ -36,8 +36,8 @@ export default function ParticleCanvas() {
         this.y = Math.random() * (canvas?.height || 800);
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 2 + 1;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        this.size = Math.random() * 1.5 + 0.5;
+        this.opacity = Math.random() * 0.2 + 0.1;
         this.color = Math.random() > 0.5 ? '#F97316' : '#6B46C1';
       }
 
@@ -92,7 +92,7 @@ export default function ParticleCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none"
+      className="fixed inset-0 -z-10 pointer-events-none"
       data-testid="particle-canvas"
     />
   );
