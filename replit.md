@@ -14,12 +14,11 @@ A bilingual (Spanish/English) landing page for Magne Software built with React, 
 ## Recent Changes
 - Migrated from Replit Agent environment to standard Replit (January 26, 2025)
 - All dependencies properly installed and configured
-- Workflow successfully running on port 5000
+- Workflow successfully running on port 5001
+- Resolved cross-env dependency issues for proper environment setup
 - Fixed particle animation z-index issue in services section (January 26, 2025)
 - Optimized particle count and opacity for better performance and visibility
 - Updated typography to match brand identity with Space Grotesk and Poppins fonts (January 26, 2025)
-- Fixed particle animation z-index issue in services section (January 26, 2025)
-- Optimized particle count and opacity for better performance and visibility
 
 ## User Preferences
 - Language: Spanish/English bilingual support required
