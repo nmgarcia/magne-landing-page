@@ -111,25 +111,25 @@ export function useAnimations() {
 
           // Subtle bottom-to-top particle animation based on scroll
           const createParticleAssembly = () => {
-            const particleCount = selector.includes('service-card') ? 12 : 8;
-            const container = element.parentElement || document.body;
+            const particleCount = selector.includes('service-card') ? 8 : 6;
+            const sectionRect = element.getBoundingClientRect();
 
             for (let i = 0; i < particleCount; i++) {
               const particle = document.createElement('div');
-              const startX = Math.random() * window.innerWidth;
-              const startY = window.innerHeight + 50;
+              const startX = sectionRect.left + Math.random() * sectionRect.width;
+              const startY = sectionRect.bottom + 20;
               
               particle.style.cssText = `
-                position: fixed;
-                width: 1.5px;
-                height: 1.5px;
+                position: absolute;
+                width: 3px;
+                height: 3px;
                 background: hsl(25, 95%, 53%);
                 border-radius: 50%;
                 left: ${startX}px;
                 top: ${startY}px;
-                opacity: 0.4;
-                box-shadow: 0 0 4px hsl(25, 95%, 53%);
-                z-index: -1;
+                opacity: 0.7;
+                box-shadow: 0 0 8px hsl(25, 95%, 53%);
+                z-index: 1;
                 pointer-events: none;
               `;
               
@@ -139,12 +139,12 @@ export function useAnimations() {
               if (window.anime) {
                 window.anime({
                   targets: particle,
-                  translateY: [-window.innerHeight - 100],
-                  translateX: [Math.random() * 100 - 50],
-                  opacity: [0.4, 0.6, 0.2, 0],
-                  scale: [0.5, 1, 0.3],
-                  duration: 3000 + Math.random() * 2000,
-                  delay: i * 200,
+                  translateY: [-sectionRect.height - 100],
+                  translateX: [Math.random() * 60 - 30],
+                  opacity: [0.7, 0.9, 0.5, 0],
+                  scale: [0.3, 1.2, 0.8, 0],
+                  duration: 2500 + Math.random() * 1500,
+                  delay: i * 150,
                   easing: 'easeOutQuad',
                   complete: () => particle.remove()
                 });
@@ -210,23 +210,24 @@ export function useAnimations() {
 
           // Subtle left-to-right particle animation across screen width
           const createAboutParticleEffect = () => {
-            const particleCount = selector.includes('value-card') ? 6 : 10;
+            const particleCount = selector.includes('value-card') ? 4 : 6;
+            const sectionRect = element.getBoundingClientRect();
 
             for (let i = 0; i < particleCount; i++) {
               const particle = document.createElement('div');
-              const startY = Math.random() * window.innerHeight;
+              const startY = sectionRect.top + Math.random() * sectionRect.height;
               
               particle.style.cssText = `
-                position: fixed;
-                width: 1.5px;
-                height: 1.5px;
+                position: absolute;
+                width: 2.5px;
+                height: 2.5px;
                 background: ${particleColor};
                 border-radius: 50%;
-                left: -10px;
+                left: -20px;
                 top: ${startY}px;
-                opacity: 0.5;
-                box-shadow: 0 0 3px ${particleColor};
-                z-index: -1;
+                opacity: 0.8;
+                box-shadow: 0 0 6px ${particleColor};
+                z-index: 1;
                 pointer-events: none;
               `;
               
@@ -235,12 +236,12 @@ export function useAnimations() {
               if (window.anime) {
                 window.anime({
                   targets: particle,
-                  translateX: [window.innerWidth + 20],
-                  translateY: [Math.random() * 100 - 50],
-                  opacity: [0.5, 0.7, 0.3, 0],
-                  scale: [0.5, 1.2, 0.8, 0],
-                  duration: 4000 + Math.random() * 2000,
-                  delay: i * 300,
+                  translateX: [window.innerWidth + 40],
+                  translateY: [Math.random() * 80 - 40],
+                  opacity: [0.8, 1, 0.6, 0],
+                  scale: [0.4, 1.5, 1, 0],
+                  duration: 3500 + Math.random() * 2000,
+                  delay: i * 400,
                   easing: 'easeInOutQuad',
                   complete: () => particle.remove()
                 });
@@ -307,23 +308,24 @@ export function useAnimations() {
 
           // Subtle right-to-left particle animation across screen width
           const createContactParticleEffect = () => {
-            const particleCount = selector.includes('contact-form') ? 8 : 6;
+            const particleCount = selector.includes('contact-form') ? 5 : 4;
+            const sectionRect = element.getBoundingClientRect();
 
             for (let i = 0; i < particleCount; i++) {
               const particle = document.createElement('div');
-              const startY = Math.random() * window.innerHeight;
+              const startY = sectionRect.top + Math.random() * sectionRect.height;
               
               particle.style.cssText = `
-                position: fixed;
-                width: 2px;
-                height: 2px;
+                position: absolute;
+                width: 3px;
+                height: 3px;
                 background: ${particleColor};
                 border-radius: 50%;
-                left: ${window.innerWidth + 10}px;
+                left: ${window.innerWidth + 20}px;
                 top: ${startY}px;
-                opacity: 0.6;
-                box-shadow: 0 0 4px ${particleColor};
-                z-index: -1;
+                opacity: 0.8;
+                box-shadow: 0 0 8px ${particleColor};
+                z-index: 1;
                 pointer-events: none;
               `;
               
@@ -332,12 +334,12 @@ export function useAnimations() {
               if (window.anime) {
                 window.anime({
                   targets: particle,
-                  translateX: [-window.innerWidth - 20],
-                  translateY: [Math.random() * 80 - 40],
-                  opacity: [0.6, 0.8, 0.4, 0],
-                  scale: [0.6, 1.4, 0.9, 0],
-                  duration: 3500 + Math.random() * 2000,
-                  delay: i * 250,
+                  translateX: [-window.innerWidth - 40],
+                  translateY: [Math.random() * 60 - 30],
+                  opacity: [0.8, 1, 0.7, 0],
+                  scale: [0.5, 1.6, 1.2, 0],
+                  duration: 3000 + Math.random() * 2000,
+                  delay: i * 300,
                   easing: 'easeInOutQuad',
                   complete: () => particle.remove()
                 });
