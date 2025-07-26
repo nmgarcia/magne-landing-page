@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAnimations } from '../hooks/useAnimations';
 import LoadingScreen from '../components/LoadingScreen';
 import ParticleCanvas from '../components/ParticleCanvas';
+import MagneticCursor from '../components/MagneticCursor';
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
@@ -33,6 +34,9 @@ export default function Home() {
       
       {/* Particle Canvas Background */}
       <ParticleCanvas />
+      
+      {/* Magnetic Cursor */}
+      <MagneticCursor />
       
       {/* Navigation */}
       <Navigation />

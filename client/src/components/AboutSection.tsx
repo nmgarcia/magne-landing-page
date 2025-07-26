@@ -24,11 +24,11 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
+    <section id="about" className="py-24 relative overflow-hidden section-background">
       {/* Section Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800/50 to-purple-900/20"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800/50 to-purple-900/20 z-0"></div>
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 section-content">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content Side */}
           <div className="about-content">

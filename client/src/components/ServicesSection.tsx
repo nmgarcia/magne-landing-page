@@ -60,9 +60,9 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden">
+    <section id="services" className="py-24 relative overflow-hidden section-background">
       {/* Section Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 z-0"></div>
       
       {/* Floating Geometric Shapes */}
       <div className="absolute inset-0 opacity-5">
@@ -70,7 +70,7 @@ export default function ServicesSection() {
         <div className="absolute bottom-20 right-10 w-24 h-24 bg-violet-500/20 rounded-full magnetic-float"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 section-content">
         {/* Section Header */}
         <div className="text-center mb-20">
           <div className="services-badge inline-flex items-center px-4 py-2 bg-violet-500/20 border border-violet-500/30 rounded-full mb-6">

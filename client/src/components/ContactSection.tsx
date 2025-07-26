@@ -97,16 +97,16 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <section id="contact" className="py-24 relative overflow-hidden section-background">
       {/* Section Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-800 via-slate-900 to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-800 via-slate-900 to-black z-0"></div>
       
       {/* Animated Grid Background */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10 z-1">
         <div className="grid-pattern w-full h-full"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 section-content">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Contact Info Side */}
           <div className="contact-info">

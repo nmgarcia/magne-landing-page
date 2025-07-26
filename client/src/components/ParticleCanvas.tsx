@@ -32,8 +32,8 @@ export default function ParticleCanvas() {
       color: string;
 
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * (canvas?.width || 1200);
+        this.y = Math.random() * (canvas?.height || 800);
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
         this.size = Math.random() * 2 + 1;
@@ -46,6 +46,7 @@ export default function ParticleCanvas() {
         this.y += this.vy;
 
         // Wrap around edges
+        if (!canvas) return;
         if (this.x < 0) this.x = canvas.width;
         if (this.x > canvas.width) this.x = 0;
         if (this.y < 0) this.y = canvas.height;
@@ -53,6 +54,7 @@ export default function ParticleCanvas() {
       }
 
       draw() {
+        if (!ctx) return;
         ctx.save();
         ctx.globalAlpha = this.opacity;
         ctx.beginPath();
