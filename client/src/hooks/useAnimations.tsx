@@ -27,39 +27,33 @@ export function useAnimations() {
 
   const animateHeroElements = () => {
     if (window.anime) {
-      // Set initial visibility to hidden before animation starts
-      const heroElements = document.querySelectorAll('.magnetic-word, .hero-subtitle, .hero-cta, .hero-badge');
-      heroElements.forEach(el => {
-        (el as HTMLElement).style.opacity = '0';
-      });
-
-      // Magnetic text animation
+      // Simple bottom-to-top animation on page load
       window.anime.timeline({
         easing: 'easeOutExpo',
-        duration: 1000,
-        delay: 2500
+        duration: 800,
+        delay: 500
       })
       .add({
         targets: '.magnetic-word',
-        translateY: [100, 0],
+        translateY: [60, 0],
         opacity: [0, 1],
-        delay: window.anime.stagger(200)
+        delay: window.anime.stagger(150)
       })
       .add({
         targets: '.hero-subtitle',
-        translateY: [50, 0],
+        translateY: [40, 0],
         opacity: [0, 1]
-      }, '-=500')
+      }, '-=600')
       .add({
         targets: '.hero-cta',
         translateY: [30, 0],
         opacity: [0, 1]
-      }, '-=300')
+      }, '-=500')
       .add({
         targets: '.hero-badge',
-        scale: [0.8, 1],
+        translateY: [20, 0],
         opacity: [0, 1]
-      }, '-=800');
+      }, '-=700');
 
       // Floating icons animation
       window.anime({

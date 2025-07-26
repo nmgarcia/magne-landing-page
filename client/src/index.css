@@ -72,6 +72,15 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Hero section initial states to prevent flashing */
+  .magnetic-word,
+  .hero-subtitle,
+  .hero-cta,
+  .hero-badge {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 }
 
 @layer components {
