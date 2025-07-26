@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useAnimations } from '../hooks/useAnimations';
-import LoadingScreen from '../components/LoadingScreen';
-import ParticleCanvas from '../components/ParticleCanvas';
-import MagneticCursor from '../components/MagneticCursor';
-import Navigation from '../components/Navigation';
-import HeroSection from '../components/HeroSection';
-import ServicesSection from '../components/ServicesSection';
-import AboutSection from '../components/AboutSection';
-import ContactSection from '../components/ContactSection';
-import Footer from '../components/Footer';
+import { useState, useEffect } from "react";
+import LoadingScreen from "../components/LoadingScreen";
+import ParticleCanvas from "../components/ParticleCanvas";
+import MagneticCursor from "../components/MagneticCursor";
+import Navigation from "../components/Navigation";
+import HeroSection from "../components/HeroSection";
+import ServicesSection from "../components/ServicesSection";
+import AboutSection from "../components/AboutSection";
+import ContactSection from "../components/ContactSection";
+import Footer from "../components/Footer";
+import { useAnimations } from "@/hooks/useAnimations";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,16 +31,16 @@ export default function Home() {
     <div className="min-h-screen bg-slate-900 text-white font-inter overflow-x-hidden">
       {/* Loading Screen */}
       {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
-      
+
       {/* Particle Canvas Background */}
       <ParticleCanvas />
-      
+
       {/* Magnetic Cursor */}
       <MagneticCursor />
-      
+
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main Content */}
       <main>
         <HeroSection />
@@ -48,7 +48,7 @@ export default function Home() {
         <AboutSection />
         <ContactSection />
       </main>
-      
+
       {/* Footer */}
       <Footer />
     </div>
