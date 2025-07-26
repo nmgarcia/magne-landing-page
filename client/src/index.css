@@ -190,13 +190,140 @@
   /* Magnetic Assembly Effect */
   .magnetic-element {
     opacity: 0;
-    transform: translateY(50px) scale(0.8);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(80px) scale(0.6) rotateX(15deg);
+    transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: blur(3px);
   }
 
   .magnetic-element.assembled {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0px);
+  }
+
+  .magnetic-element.disassembled {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.4) rotateX(-15deg);
+    filter: blur(5px);
+  }
+
+  /* Service Card Assembly - Enhanced Square Cards */
+  .service-card-container {
+    perspective: 1200px;
+  }
+
+  .service-card.magnetic-element {
+    transform-style: preserve-3d;
+    transform: translateY(200px) scale(0.3) rotateY(60deg) rotateX(35deg) rotateZ(15deg);
+    opacity: 0;
+    filter: blur(8px) brightness(0.3);
+    transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+    border-radius: 16px;
+    aspect-ratio: 1;
+    min-height: 280px;
+  }
+
+  .service-card.magnetic-element.assembled {
+    transform: translateY(0) scale(1) rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+  }
+
+  .service-card.magnetic-element.disassembled {
+    transform: translateY(-200px) scale(0.2) rotateY(-60deg) rotateX(-35deg) rotateZ(-15deg);
+    opacity: 0;
+    filter: blur(12px) brightness(0.1);
+  }
+
+  /* Value Card Assembly - Enhanced */
+  .value-card.magnetic-element {
+    transform: translateY(150px) scale(0.2) rotate(25deg) rotateX(45deg);
+    opacity: 0;
+    filter: blur(6px) saturate(0.3);
+    transition: all 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.8);
+    transform-origin: center bottom;
+  }
+
+  .value-card.magnetic-element.assembled {
+    transform: translateY(0) scale(1) rotate(0deg) rotateX(0deg);
+    opacity: 1;
+    filter: blur(0px) saturate(1);
+  }
+
+  .value-card.magnetic-element.disassembled {
+    transform: translateY(-150px) scale(0.1) rotate(-25deg) rotateX(-45deg);
+    opacity: 0;
+    filter: blur(8px) saturate(0.1);
+  }
+
+  /* Enhanced Magnetic Assembly Effects */
+  .assembled {
+    animation: magneticPull 0.8s ease-out;
+  }
+
+  .disassembled {
+    animation: magneticScatter 0.6s ease-in;
+  }
+
+  @keyframes magneticPull {
+    0% {
+      transform: scale(0.8);
+      filter: brightness(1.5);
+    }
+    50% {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+    100% {
+      transform: scale(1);
+      filter: brightness(1);
+    }
+  }
+
+  @keyframes magneticScatter {
+    0% {
+      transform: scale(1);
+      filter: brightness(1);
+    }
+    100% {
+      transform: scale(0.3);
+      filter: brightness(0.3);
+    }
+  }
+
+  /* Magnetic Wave Effect */
+  @keyframes magneticWave {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(8);
+      opacity: 0;
+    }
+  }
+
+  .magnetic-wave {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid hsl(25, 95%, 53%);
+    border-radius: 50%;
+    animation: magneticWave 2s ease-out;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* Enhanced Bidirectional Assembly */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .magnetic-fragment {

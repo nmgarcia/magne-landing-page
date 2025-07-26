@@ -91,7 +91,7 @@ export default function ServicesSection() {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="service-card group relative bg-gradient-to-br from-slate-800 to-slate-700 p-8 rounded-2xl border border-violet-500/20 hover:border-orange-500/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
+              className="service-card group relative bg-gradient-to-br from-slate-800 to-slate-700 p-8 rounded-xl border border-violet-500/20 hover:border-orange-500/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 service-card-container"
               data-testid={`service-card-${index}`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-violet-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

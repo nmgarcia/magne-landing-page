@@ -70,214 +70,310 @@ export function useAnimations() {
   };
 
   const animateServicesSection = () => {
-    if (window.gsap && window.anime) {
-      // Create magnetic assembly effect
-      const createMagneticAssembly = (selector: string, delay = 0) => {
+    if (window.gsap && window.ScrollTrigger) {
+      // Enhanced bidirectional scroll animation system
+      const createBidirectionalAnimation = (selector: string, staggerDelay = 0.1) => {
         const elements = document.querySelectorAll(selector);
+        
         elements.forEach((element, index) => {
-          // Create scattered fragments that will attract to form the element
-          const fragmentCount = 12;
-          const fragments: HTMLElement[] = [];
+          // Add magnetic-element class for CSS transitions
+          element.classList.add('magnetic-element');
           
-          for (let i = 0; i < fragmentCount; i++) {
-            const fragment = document.createElement('div');
-            fragment.className = 'magnetic-fragment';
-            const angle = (i / fragmentCount) * Math.PI * 2;
-            const distance = 150 + Math.random() * 100;
-            const x = Math.cos(angle) * distance;
-            const y = Math.sin(angle) * distance;
-            
-            fragment.style.cssText = `
-              position: absolute;
-              width: 3px;
-              height: 3px;
-              background: hsl(25, 95%, 53%);
-              border-radius: 50%;
-              top: 50%;
-              left: 50%;
-              transform: translate(${x}px, ${y}px);
-              opacity: 0;
-            `;
-            
-            element.appendChild(fragment);
-            fragments.push(fragment);
-          }
-          
-          // Trigger magnetic assembly on scroll
+          // Create ScrollTrigger for bidirectional animation
+          window.gsap.timeline({
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 90%',
+              end: 'bottom 10%',
+              toggleActions: 'play reverse play reverse',
+              onEnter: () => {
+                setTimeout(() => {
+                  element.classList.add('assembled');
+                  element.classList.remove('disassembled');
+                }, index * staggerDelay * 1000);
+              },
+              onLeave: () => {
+                element.classList.add('disassembled');
+                element.classList.remove('assembled');
+              },
+              onEnterBack: () => {
+                setTimeout(() => {
+                  element.classList.add('assembled');
+                  element.classList.remove('disassembled');
+                }, (elements.length - index - 1) * staggerDelay * 1000);
+              },
+              onLeaveBack: () => {
+                element.classList.add('disassembled');
+                element.classList.remove('assembled');
+              }
+            }
+          });
+
+          // Enhanced particle assembly effect for services
+          const createParticleAssembly = () => {
+            const particleCount = selector.includes('service-card') ? 35 : 20;
+            const container = element.parentElement || document.body;
+
+            for (let i = 0; i < particleCount; i++) {
+              const particle = document.createElement('div');
+              const angle = (i / particleCount) * Math.PI * 2;
+              const distance = 200 + Math.random() * 150;
+              const x = Math.cos(angle) * distance;
+              const y = Math.sin(angle) * distance;
+              
+              particle.style.cssText = `
+                position: absolute;
+                width: ${selector.includes('service-card') ? '4px' : '3px'};
+                height: ${selector.includes('service-card') ? '4px' : '3px'};
+                background: hsl(25, 95%, 53%);
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(${x}px, ${y}px);
+                opacity: 1;
+                box-shadow: 0 0 12px hsl(25, 95%, 53%);
+                z-index: 100;
+                pointer-events: none;
+              `;
+              
+              container.appendChild(particle);
+              
+              // Enhanced magnetic attraction animation
+              if (window.anime) {
+                window.anime({
+                  targets: particle,
+                  translateX: [x, 0],
+                  translateY: [y, 0],
+                  opacity: [1, 0.9, 0],
+                  scale: [0.3, 2, 0],
+                  rotate: [0, 360],
+                  duration: 1800,
+                  delay: i * 40,
+                  easing: 'easeOutExpo',
+                  complete: () => particle.remove()
+                });
+              }
+            }
+          };
+
+          // Trigger particle effect on assembly
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: 'top 85%',
-              onEnter: () => {
-                // Animate fragments converging
-                window.anime({
-                  targets: fragments,
-                  translateX: 0,
-                  translateY: 0,
-                  opacity: [0, 1, 0],
-                  scale: [0.5, 1, 0],
-                  duration: 1000,
-                  delay: window.anime.stagger(50, { start: delay + index * 100 }),
-                  easing: 'easeOutExpo',
-                  complete: () => {
-                    fragments.forEach(f => f.remove());
-                    element.classList.add('assembled');
-                  }
-                });
-              }
+              onEnter: createParticleAssembly
             }
           });
         });
       };
 
-      // Apply magnetic assembly to different elements
-      createMagneticAssembly('.services-title', 0);
-      createMagneticAssembly('.services-subtitle', 200);
-      createMagneticAssembly('.service-card', 400);
-
-      // Original GSAP animations with magnetic attraction effect
-      window.gsap.set(['.services-title', '.services-subtitle', '.service-card'], { 
-        className: '+=magnetic-element' 
-      });
+      // Apply enhanced animations to services elements with staggered assembly
+      createBidirectionalAnimation('.services-title', 0);
+      createBidirectionalAnimation('.services-subtitle', 0.1);
+      createBidirectionalAnimation('.service-card', 0.25); // Increased stagger for dramatic assembly
     }
   };
 
   const animateAboutSection = () => {
-    if (window.gsap && window.anime) {
-      // Create magnetic assembly for about section
-      const createMagneticAssembly = (selector: string, delay = 0) => {
+    if (window.gsap && window.ScrollTrigger) {
+      const createAboutBidirectionalAnimation = (selector: string, staggerDelay = 0.12, particleColor = 'hsl(262, 72%, 57%)') => {
         const elements = document.querySelectorAll(selector);
+        
         elements.forEach((element, index) => {
-          const fragmentCount = 15;
-          const fragments: HTMLElement[] = [];
+          element.classList.add('magnetic-element');
           
-          for (let i = 0; i < fragmentCount; i++) {
-            const fragment = document.createElement('div');
-            fragment.className = 'magnetic-fragment';
-            const angle = (i / fragmentCount) * Math.PI * 2;
-            const distance = 120 + Math.random() * 80;
-            const x = Math.cos(angle) * distance;
-            const y = Math.sin(angle) * distance;
-            
-            fragment.style.cssText = `
-              position: absolute;
-              width: 2px;
-              height: 2px;
-              background: hsl(262, 72%, 57%);
-              border-radius: 50%;
-              top: 50%;
-              left: 50%;
-              transform: translate(${x}px, ${y}px);
-              opacity: 0;
-            `;
-            
-            element.appendChild(fragment);
-            fragments.push(fragment);
-          }
-          
+          // Enhanced bidirectional animation for about section
+          window.gsap.timeline({
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 85%',
+              end: 'bottom 15%',
+              toggleActions: 'play reverse play reverse',
+              onEnter: () => {
+                setTimeout(() => {
+                  element.classList.add('assembled');
+                  element.classList.remove('disassembled');
+                }, index * staggerDelay * 1000);
+              },
+              onLeave: () => {
+                element.classList.add('disassembled');
+                element.classList.remove('assembled');
+              },
+              onEnterBack: () => {
+                setTimeout(() => {
+                  element.classList.add('assembled');
+                  element.classList.remove('disassembled');
+                }, (elements.length - index - 1) * staggerDelay * 1000);
+              },
+              onLeaveBack: () => {
+                element.classList.add('disassembled');
+                element.classList.remove('assembled');
+              }
+            }
+          });
+
+          // Enhanced particle effect for about section
+          const createAboutParticleEffect = () => {
+            const particleCount = selector.includes('value-card') ? 15 : 25;
+            const container = element.parentElement || element;
+
+            for (let i = 0; i < particleCount; i++) {
+              const particle = document.createElement('div');
+              const angle = (i / particleCount) * Math.PI * 2;
+              const distance = 120 + Math.random() * 90;
+              const x = Math.cos(angle) * distance;
+              const y = Math.sin(angle) * distance;
+              
+              particle.style.cssText = `
+                position: absolute;
+                width: ${selector.includes('value-card') ? '2px' : '3px'};
+                height: ${selector.includes('value-card') ? '2px' : '3px'};
+                background: ${particleColor};
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(${x}px, ${y}px);
+                opacity: 1;
+                box-shadow: 0 0 8px ${particleColor};
+                z-index: 5;
+                pointer-events: none;
+              `;
+              
+              container.appendChild(particle);
+              
+              if (window.anime) {
+                window.anime({
+                  targets: particle,
+                  translateX: 0,
+                  translateY: 0,
+                  opacity: [1, 0.8, 0],
+                  scale: [0.3, 1.5, 0],
+                  duration: 1400,
+                  delay: i * 60,
+                  easing: 'easeOutExpo',
+                  complete: () => particle.remove()
+                });
+              }
+            }
+          };
+
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: 'top 80%',
-              onEnter: () => {
-                window.anime({
-                  targets: fragments,
-                  translateX: 0,
-                  translateY: 0,
-                  opacity: [0, 0.8, 0],
-                  scale: [0.3, 1.2, 0],
-                  duration: 1200,
-                  delay: window.anime.stagger(40, { start: delay + index * 150 }),
-                  easing: 'easeOutExpo',
-                  complete: () => {
-                    fragments.forEach(f => f.remove());
-                    element.classList.add('assembled');
-                  }
-                });
-              }
+              onEnter: createAboutParticleEffect
             }
           });
         });
       };
 
-      createMagneticAssembly('.about-title', 0);
-      createMagneticAssembly('.about-description', 300);
-      createMagneticAssembly('.vision-item', 600);
-      createMagneticAssembly('.mission-item', 700);
-      createMagneticAssembly('.value-card', 900);
-
-      window.gsap.set(['.about-title', '.about-description', '.vision-item', '.mission-item', '.value-card'], { 
-        className: '+=magnetic-element' 
-      });
+      // Apply enhanced animations with different colors and timings
+      createAboutBidirectionalAnimation('.about-title', 0, 'hsl(262, 72%, 57%)');
+      createAboutBidirectionalAnimation('.about-description', 0.1, 'hsl(217, 91%, 60%)');
+      createAboutBidirectionalAnimation('.vision-item', 0.12, 'hsl(25, 95%, 53%)');
+      createAboutBidirectionalAnimation('.mission-item', 0.14, 'hsl(262, 72%, 57%)');
+      createAboutBidirectionalAnimation('.value-card', 0.08, 'hsl(25, 95%, 53%)');
     }
   };
 
   const animateContactSection = () => {
-    if (window.gsap && window.anime) {
-      const createMagneticAssembly = (selector: string, delay = 0) => {
+    if (window.gsap && window.ScrollTrigger) {
+      const createContactBidirectionalAnimation = (selector: string, staggerDelay = 0.15, particleColor = 'hsl(217, 91%, 60%)') => {
         const elements = document.querySelectorAll(selector);
+        
         elements.forEach((element, index) => {
-          const fragmentCount = 20;
-          const fragments: HTMLElement[] = [];
+          element.classList.add('magnetic-element');
           
-          for (let i = 0; i < fragmentCount; i++) {
-            const fragment = document.createElement('div');
-            fragment.className = 'magnetic-fragment';
-            const angle = (i / fragmentCount) * Math.PI * 2;
-            const distance = 100 + Math.random() * 120;
-            const x = Math.cos(angle) * distance;
-            const y = Math.sin(angle) * distance;
-            
-            fragment.style.cssText = `
-              position: absolute;
-              width: 2px;
-              height: 2px;
-              background: hsl(25, 95%, 53%);
-              border-radius: 50%;
-              top: 50%;
-              left: 50%;
-              transform: translate(${x}px, ${y}px);
-              opacity: 0;
-              box-shadow: 0 0 4px hsl(25, 95%, 53%);
-            `;
-            
-            element.appendChild(fragment);
-            fragments.push(fragment);
-          }
-          
+          // Enhanced bidirectional animation for contact section
+          window.gsap.timeline({
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 80%',
+              end: 'bottom 20%',
+              toggleActions: 'play reverse play reverse',
+              onEnter: () => {
+                setTimeout(() => {
+                  element.classList.add('assembled');
+                  element.classList.remove('disassembled');
+                }, index * staggerDelay * 1000);
+              },
+              onLeave: () => {
+                element.classList.add('disassembled');
+                element.classList.remove('assembled');
+              },
+              onEnterBack: () => {
+                setTimeout(() => {
+                  element.classList.add('assembled');
+                  element.classList.remove('disassembled');
+                }, (elements.length - index - 1) * staggerDelay * 1000);
+              },
+              onLeaveBack: () => {
+                element.classList.add('disassembled');
+                element.classList.remove('assembled');
+              }
+            }
+          });
+
+          // Enhanced particle effect for contact section
+          const createContactParticleEffect = () => {
+            const particleCount = selector.includes('contact-form') ? 30 : 20;
+            const container = element.parentElement || element;
+
+            for (let i = 0; i < particleCount; i++) {
+              const particle = document.createElement('div');
+              const angle = (i / particleCount) * Math.PI * 2;
+              const distance = 140 + Math.random() * 100;
+              const x = Math.cos(angle) * distance;
+              const y = Math.sin(angle) * distance;
+              
+              particle.style.cssText = `
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: ${particleColor};
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(${x}px, ${y}px);
+                opacity: 1;
+                box-shadow: 0 0 10px ${particleColor};
+                z-index: 5;
+                pointer-events: none;
+              `;
+              
+              container.appendChild(particle);
+              
+              if (window.anime) {
+                window.anime({
+                  targets: particle,
+                  translateX: 0,
+                  translateY: 0,
+                  opacity: [1, 0.9, 0],
+                  scale: [0.4, 1.8, 0],
+                  duration: 1600,
+                  delay: i * 40,
+                  easing: 'easeOutExpo',
+                  complete: () => particle.remove()
+                });
+              }
+            }
+          };
+
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: 'top 75%',
-              onEnter: () => {
-                window.anime({
-                  targets: fragments,
-                  translateX: 0,
-                  translateY: 0,
-                  opacity: [0, 1, 0],
-                  scale: [0.2, 1.5, 0],
-                  duration: 1500,
-                  delay: window.anime.stagger(30, { start: delay + index * 100 }),
-                  easing: 'easeOutExpo',
-                  complete: () => {
-                    fragments.forEach(f => f.remove());
-                    element.classList.add('assembled');
-                  }
-                });
-              }
+              onEnter: createContactParticleEffect
             }
           });
         });
       };
 
-      createMagneticAssembly('.contact-title', 0);
-      createMagneticAssembly('.contact-description', 200);
-      createMagneticAssembly('.contact-method', 400);
-      createMagneticAssembly('.contact-form', 600);
-
-      window.gsap.set(['.contact-title', '.contact-description', '.contact-method', '.contact-form'], { 
-        className: '+=magnetic-element' 
-      });
+      // Apply enhanced animations with blue particle effects
+      createContactBidirectionalAnimation('.contact-title', 0, 'hsl(217, 91%, 60%)');
+      createContactBidirectionalAnimation('.contact-description', 0.1, 'hsl(25, 95%, 53%)');
+      createContactBidirectionalAnimation('.contact-method', 0.12, 'hsl(262, 72%, 57%)');
+      createContactBidirectionalAnimation('.contact-form', 0.08, 'hsl(217, 91%, 60%)');
     }
   };
 
