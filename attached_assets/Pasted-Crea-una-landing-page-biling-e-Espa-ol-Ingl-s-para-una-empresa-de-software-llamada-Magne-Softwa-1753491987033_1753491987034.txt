@@ -1,0 +1,79 @@
+Crea una landing page bilingüe (Español / Inglés) para una empresa de software llamada "Magne Software Solutions". El sitio debe ser moderno, responsivo y visualmente impactante, usando librerías de animación como Anime.js o GSAP para transiciones suaves y animaciones modernas relacionadas con tecnología y videojuegos.
+
+🔵 Valores centrales de la empresa:
+
+* Honestidad
+* Transparencia
+* Calidad
+* Confianza
+* Amigable
+* Team First
+
+🎯 Visión:
+"Ser consultora software y staff augmentation de empresas de videojuegos".
+
+💼 Misión:
+"Satisfacer necesidades de clientes locales, nacionales e internacionales construyendo sitios de calidad y a medida".
+
+🔗 Logo y marca:
+Usar los elementos visuales de [https://magne.io](https://magne.io) como base (logo, estilo visual). El diseño debe ser elegante y moderno, pero amigable.
+
+🎨 Paleta de colores:
+Azul, violeta, blanco y negro como base. Puede incluir detalles en naranja. Inspirarse visualmente en:
+
+* [https://canvas-lancer.vercel.app/](https://canvas-lancer.vercel.app/)
+* [https://saas-landing-page-template-eldoraui.vercel.app/](https://saas-landing-page-template-eldoraui.vercel.app/)
+* [https://www.endava.com/](https://www.endava.com/)
+* [https://www.globallogic.com/latam/](https://www.globallogic.com/latam/)
+* [https://folderit.net/](https://folderit.net/)
+
+⚙️ Secciones (orden sugerido):
+
+1. **Hero principal** con slogan relacionado con magnetismo y grandeza. Ejemplos:
+
+   * “Atraemos el éxito a tu empresa”
+   * “Magnetismo para grandes ideas”
+   * “Soluciones de software magnéticas”
+2. **Servicios** (bilingüe):
+
+   * Desarrollo de videojuegos
+   * Staff augmentation
+   * Páginas web
+   * Software a medida
+   * UI/UX
+   * Consultoría tecnológica
+3. **Quiénes somos** (team-friendly, amigable pero profesional)
+4. **Contacto** (formulario simple y redes)
+5. **Selector de idioma (ES/EN)** que cambie el contenido completo entre ambos idiomas.
+
+✨ Animaciones:
+
+* Usar Anime.js o GSAP para animar entrada de secciones, parallax suave, microinteracciones (hover, scroll, texto animado, carga inicial).
+* Estética moderna que combine tecnología y diseño.
+* Inspiración visual en landing pages de videojuegos y consultoras tecnológicas.
+* En la sección Hero, incluir una animación con Anime.js que combine fade-in + slide-up del título y subtítulo, con delay escalonado.
+
+🧩 Tecnología recomendada:
+
+* HTML + Tailwind CSS + JavaScript (opcionalmente con React o Vite)
+* Estructura modular, con carpeta `/components` para reutilización de secciones.
+* Carpeta `/locales` con archivos `es.json` y `en.json` para contenido multilenguaje.
+* Integración con Anime.js y/o GSAP
+* Navegación fluida con scroll suave y comportamiento responsivo.
+* Código accesible y comentado.
+
+📁 Estructura sugerida del proyecto:
+
+```
+/src
+  /assets
+  /components
+  /locales
+    es.json
+    en.json
+  App.jsx (o index.html si no usás React)
+  main.js
+  styles.css
+```
+
+✅ Código modular y comentado, fácil de extender.
