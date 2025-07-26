@@ -25,11 +25,46 @@ export function useAnimations() {
     }
   };
 
-  const animateHeroElements = () => {
-    // Use CSS animations instead of JS animations to prevent flashing
-    // The animations are already defined in CSS with delays
+  const animateHeroElements = async (onComplete?: () => void) => {
     if (window.anime) {
-      // Floating icons animation
+      window.anime
+        .timeline({
+          easing: "easeOutExpo",
+          duration: 800,
+          delay: 500,
+          complete: onComplete, // <-- callback al terminar
+        })
+        .add({
+          targets: ".hero-title",
+          translateY: [60, 0],
+          opacity: [0, 1],
+          delay: window.anime.stagger(150),
+        })
+        .add(
+          {
+            targets: ".hero-subtitle",
+            translateY: [40, 0],
+            opacity: [0, 1],
+          },
+          "-=600"
+        )
+        .add(
+          {
+            targets: ".hero-cta",
+            translateY: [30, 0],
+            opacity: [0, 1],
+          },
+          "-=500"
+        )
+        .add(
+          {
+            targets: ".hero-badge",
+            translateY: [20, 0],
+            opacity: [0, 1],
+          },
+          "-=700"
+        );
+
       window.anime({
         targets: ".floating-icon",
         translateY: [-20, 20],

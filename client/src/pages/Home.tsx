@@ -16,14 +16,14 @@ export default function Home() {
 
   useEffect(() => {
     // Initialize magnetic effects after components are loaded
-    const timer = setTimeout(() => {
-      initMagneticEffects();
+    const timer = setTimeout(async () => {
+      await initMagneticEffects();
     }, 3000);
 
     return () => clearTimeout(timer);
   }, [initMagneticEffects]);
 
-  const handleLoadingComplete = () => {
+  const handleLoadingComplete = async () => {
     setIsLoading(false);
   };
 
@@ -31,24 +31,19 @@ export default function Home() {
     <div className="min-h-screen bg-slate-900 text-white font-inter overflow-x-hidden">
       {/* Loading Screen */}
       {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
-
       {/* Particle Canvas Background */}
       <ParticleCanvas />
-
       {/* Magnetic Cursor */}
       <MagneticCursor />
-
       {/* Navigation */}
       <Navigation />
-
       {/* Main Content */}
       <main>
-        <HeroSection />
+        <HeroSection isLoading={isLoading} />
         <ServicesSection />
         <AboutSection />
         <ContactSection />
       </main>
-
       {/* Footer */}
       <Footer />
     </div>
