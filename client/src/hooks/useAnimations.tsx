@@ -109,47 +109,43 @@ export function useAnimations() {
             }
           });
 
-          // Enhanced particle assembly effect for services
+          // Subtle bottom-to-top particle animation based on scroll
           const createParticleAssembly = () => {
-            const particleCount = selector.includes('service-card') ? 20 : 15;
+            const particleCount = selector.includes('service-card') ? 12 : 8;
             const container = element.parentElement || document.body;
 
             for (let i = 0; i < particleCount; i++) {
               const particle = document.createElement('div');
-              const angle = (i / particleCount) * Math.PI * 2;
-              const distance = 100 + Math.random() * 50;
-              const x = Math.cos(angle) * distance;
-              const y = Math.sin(angle) * distance;
+              const startX = Math.random() * window.innerWidth;
+              const startY = window.innerHeight + 50;
               
               particle.style.cssText = `
-                position: absolute;
-                width: 2px;
-                height: 2px;
+                position: fixed;
+                width: 1.5px;
+                height: 1.5px;
                 background: hsl(25, 95%, 53%);
                 border-radius: 50%;
-                top: 50%;
-                left: 50%;
-                transform: translate(${x}px, ${y}px);
-                opacity: 0.8;
-                box-shadow: 0 0 6px hsl(25, 95%, 53%);
+                left: ${startX}px;
+                top: ${startY}px;
+                opacity: 0.4;
+                box-shadow: 0 0 4px hsl(25, 95%, 53%);
                 z-index: -1;
                 pointer-events: none;
               `;
               
-              container.appendChild(particle);
+              document.body.appendChild(particle);
               
-              // Enhanced magnetic attraction animation
+              // Bottom-to-top scroll-based animation
               if (window.anime) {
                 window.anime({
                   targets: particle,
-                  translateX: [x, 0],
-                  translateY: [y, 0],
-                  opacity: [0.8, 0.5, 0],
-                  scale: [0.3, 1.5, 0],
-                  rotate: [0, 180],
-                  duration: 1200,
-                  delay: i * 30,
-                  easing: 'easeOutExpo',
+                  translateY: [-window.innerHeight - 100],
+                  translateX: [Math.random() * 100 - 50],
+                  opacity: [0.4, 0.6, 0.2, 0],
+                  scale: [0.5, 1, 0.3],
+                  duration: 3000 + Math.random() * 2000,
+                  delay: i * 200,
+                  easing: 'easeOutQuad',
                   complete: () => particle.remove()
                 });
               }
@@ -212,45 +208,40 @@ export function useAnimations() {
             }
           });
 
-          // Enhanced particle effect for about section
+          // Subtle left-to-right particle animation across screen width
           const createAboutParticleEffect = () => {
-            const particleCount = selector.includes('value-card') ? 8 : 12;
-            const container = element.parentElement || element;
+            const particleCount = selector.includes('value-card') ? 6 : 10;
 
             for (let i = 0; i < particleCount; i++) {
               const particle = document.createElement('div');
-              const angle = (i / particleCount) * Math.PI * 2;
-              const distance = 60 + Math.random() * 40;
-              const x = Math.cos(angle) * distance;
-              const y = Math.sin(angle) * distance;
+              const startY = Math.random() * window.innerHeight;
               
               particle.style.cssText = `
-                position: absolute;
+                position: fixed;
                 width: 1.5px;
                 height: 1.5px;
                 background: ${particleColor};
                 border-radius: 50%;
-                top: 50%;
-                left: 50%;
-                transform: translate(${x}px, ${y}px);
-                opacity: 0.6;
-                box-shadow: 0 0 4px ${particleColor};
+                left: -10px;
+                top: ${startY}px;
+                opacity: 0.5;
+                box-shadow: 0 0 3px ${particleColor};
                 z-index: -1;
                 pointer-events: none;
               `;
               
-              container.appendChild(particle);
+              document.body.appendChild(particle);
               
               if (window.anime) {
                 window.anime({
                   targets: particle,
-                  translateX: 0,
-                  translateY: 0,
-                  opacity: [0.6, 0.3, 0],
-                  scale: [0.3, 1, 0],
-                  duration: 1000,
-                  delay: i * 40,
-                  easing: 'easeOutExpo',
+                  translateX: [window.innerWidth + 20],
+                  translateY: [Math.random() * 100 - 50],
+                  opacity: [0.5, 0.7, 0.3, 0],
+                  scale: [0.5, 1.2, 0.8, 0],
+                  duration: 4000 + Math.random() * 2000,
+                  delay: i * 300,
+                  easing: 'easeInOutQuad',
                   complete: () => particle.remove()
                 });
               }
@@ -314,45 +305,40 @@ export function useAnimations() {
             }
           });
 
-          // Enhanced particle effect for contact section
+          // Subtle right-to-left particle animation across screen width
           const createContactParticleEffect = () => {
-            const particleCount = selector.includes('contact-form') ? 15 : 10;
-            const container = element.parentElement || element;
+            const particleCount = selector.includes('contact-form') ? 8 : 6;
 
             for (let i = 0; i < particleCount; i++) {
               const particle = document.createElement('div');
-              const angle = (i / particleCount) * Math.PI * 2;
-              const distance = 70 + Math.random() * 30;
-              const x = Math.cos(angle) * distance;
-              const y = Math.sin(angle) * distance;
+              const startY = Math.random() * window.innerHeight;
               
               particle.style.cssText = `
-                position: absolute;
+                position: fixed;
                 width: 2px;
                 height: 2px;
                 background: ${particleColor};
                 border-radius: 50%;
-                top: 50%;
-                left: 50%;
-                transform: translate(${x}px, ${y}px);
-                opacity: 0.7;
-                box-shadow: 0 0 5px ${particleColor};
+                left: ${window.innerWidth + 10}px;
+                top: ${startY}px;
+                opacity: 0.6;
+                box-shadow: 0 0 4px ${particleColor};
                 z-index: -1;
                 pointer-events: none;
               `;
               
-              container.appendChild(particle);
+              document.body.appendChild(particle);
               
               if (window.anime) {
                 window.anime({
                   targets: particle,
-                  translateX: 0,
-                  translateY: 0,
-                  opacity: [0.7, 0.4, 0],
-                  scale: [0.4, 1.2, 0],
-                  duration: 1100,
-                  delay: i * 30,
-                  easing: 'easeOutExpo',
+                  translateX: [-window.innerWidth - 20],
+                  translateY: [Math.random() * 80 - 40],
+                  opacity: [0.6, 0.8, 0.4, 0],
+                  scale: [0.6, 1.4, 0.9, 0],
+                  duration: 3500 + Math.random() * 2000,
+                  delay: i * 250,
+                  easing: 'easeInOutQuad',
                   complete: () => particle.remove()
                 });
               }
