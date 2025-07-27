@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "../hooks/useLanguage";
 import { useOptimizedAnimations } from "../hooks/useOptimizedAnimations";
-import emailjs from '@emailjs/browser';
-import { emailjsConfig } from '../config/emailjs';
+import emailjs from "@emailjs/browser";
 
 export default function ContactSection() {
   const { t } = useLanguage();
@@ -43,29 +42,42 @@ export default function ContactSection() {
     setShowError(false);
 
     try {
-      const currentDate = new Date().toLocaleString('es-AR', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
+      const currentDate = new Date().toLocaleString("es-AR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
       });
 
+      const emailjsConfig = {
+        serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
+        // Template para confirmación al cliente
+        clientTemplateId:
+          import.meta.env.VITE_EMAILJS_CLIENT_TEMPLATE_ID ||
+          "YOUR_CLIENT_TEMPLATE_ID",
+        // Template para notificación al admin
+        adminTemplateId:
+          import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID ||
+          "YOUR_ADMIN_TEMPLATE_ID",
+        publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
+      };
+
       // Enviar email de confirmación al cliente
-      const clientEmailPromise = emailjs.send(
+      const clientEmailPromise = await emailjs.send(
         emailjsConfig.serviceId,
         emailjsConfig.clientTemplateId,
         {
           to_name: formData.name,
           to_email: formData.email,
-          from_name: 'Magne Software',
+          from_name: "Magne Software",
           service_interest: formData.subject,
         },
         emailjsConfig.publicKey
       );
 
       // Enviar email de notificación al admin
-      const adminEmailPromise = emailjs.send(
+      const adminEmailPromise = await emailjs.send(
         emailjsConfig.serviceId,
         emailjsConfig.adminTemplateId,
         {
@@ -74,7 +86,7 @@ export default function ContactSection() {
           service_interest: formData.subject,
           message: formData.message,
           contact_date: currentDate,
-          to_name: 'Mariano García',
+          to_name: "Mariano García",
         },
         emailjsConfig.publicKey
       );
@@ -103,19 +115,19 @@ export default function ContactSection() {
     {
       icon: "fas fa-envelope",
       title: "Email",
-      info: "hello@magne.io",
+      info: "info@magne.io",
       gradient: "from-orange-500 to-orange-600",
     },
     {
       icon: "fas fa-phone",
       title: t("phone"),
-      info: "+54 11 1234-5678",
+      info: "+54 297 4620917",
       gradient: "from-violet-500 to-violet-700",
     },
     {
       icon: "fas fa-map-marker-alt",
       title: t("location"),
-      info: "Buenos Aires, Argentina",
+      info: "Santa Fe, Argentina",
       gradient: "from-blue-500 to-violet-500",
     },
   ];
@@ -177,10 +189,12 @@ export default function ContactSection() {
           <div className="contact-form-container order-1 lg:order-2">
             {/* Mobile Form Header */}
             <div className="lg:hidden mb-6 text-center">
-              <h3 className="text-xl font-semibold text-white mb-2">{t("sendMessage")}</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                {t("sendMessage")}
+              </h3>
               <p className="text-gray-300 text-sm">✨ {t("fastResponse")}</p>
             </div>
-            
+
             <form
               onSubmit={handleSubmit}
               className="contact-form bg-gradient-to-b from-slate-800/80 to-slate-700/80 backdrop-blur-lg p-4 sm:p-6 lg:p-8 rounded-2xl border-2 lg:border border-orange-500/40 lg:border-violet-500/20 hover:border-orange-500/60 lg:hover:border-orange-500/30 transition-all duration-500 shadow-xl lg:shadow-none"
@@ -334,11 +348,17 @@ export default function ContactSection() {
                   <div
                     className={`method-icon w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r ${method.gradient} rounded-lg flex items-center justify-center mr-3 sm:mr-4`}
                   >
-                    <i className={`${method.icon} text-white text-sm sm:text-base`}></i>
+                    <i
+                      className={`${method.icon} text-white text-sm sm:text-base`}
+                    ></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white text-sm sm:text-base">{method.title}</h4>
-                    <p className="text-gray-300 text-sm sm:text-base">{method.info}</p>
+                    <h4 className="font-semibold text-white text-sm sm:text-base">
+                      {method.title}
+                    </h4>
+                    <p className="text-gray-300 text-sm sm:text-base">
+                      {method.info}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -346,7 +366,9 @@ export default function ContactSection() {
 
             {/* Social Links */}
             <div className="social-links">
-              <h4 className="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">{t("followUs")}</h4>
+              <h4 className="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">
+                {t("followUs")}
+              </h4>
               <div className="flex space-x-3 sm:space-x-4">
                 {socialLinks.map((social, index) => (
                   <a
@@ -355,7 +377,9 @@ export default function ContactSection() {
                     className={`social-link w-10 sm:w-12 h-10 sm:h-12 bg-slate-800 ${social.color} rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110`}
                     data-testid={`social-link-${index}`}
                   >
-                    <i className={`${social.icon} text-white text-sm sm:text-base`}></i>
+                    <i
+                      className={`${social.icon} text-white text-sm sm:text-base`}
+                    ></i>
                   </a>
                 ))}
               </div>

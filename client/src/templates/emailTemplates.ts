@@ -279,7 +279,7 @@ export const clientConfirmationTemplate = {
                 </div>
                 
                 <div class="cta-section">
-                    <a href="https://magne-software.replit.app" class="cta-button">
+                    <a href="https://magne.io class="cta-button">
                         Conoce más sobre nosotros
                     </a>
                 </div>
@@ -292,8 +292,8 @@ export const clientConfirmationTemplate = {
             <div class="footer">
                 <div class="contact-info">
                     <span class="contact-item">📧 hello@magne.io</span>
-                    <span class="contact-item">📱 +54 11 234-5678</span>
-                    <span class="contact-item">📍 Buenos Aires, Argentina</span>
+                    <span class="contact-item">📱 +54 2974620917</span>
+                    <span class="contact-item">📍 Santa Fe, Argentina</span>
                 </div>
                 
                 <div class="social-links">
@@ -303,7 +303,7 @@ export const clientConfirmationTemplate = {
                 </div>
                 
                 <div class="copyright">
-                    © 2024 Magne Software Solutions. Todos los derechos reservados.
+                    © 2025 Magne Software Solutions. Todos los derechos reservados.
                 </div>
             </div>
         </div>
@@ -580,7 +580,7 @@ export const adminNotificationTemplate = {
                     <a href="mailto:{{reply_to}}?subject=Re: Consulta sobre {{service_interest}}" class="action-btn btn-primary">
                         📧 Responder Email
                     </a>
-                    <a href="https://magne-software.replit.app" class="action-btn btn-secondary">
+                    <a href="https://magne.io" class="action-btn btn-secondary">
                         🌐 Ver Sitio Web
                     </a>
                 </div>

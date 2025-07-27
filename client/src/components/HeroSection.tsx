@@ -142,7 +142,7 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
 
               {/* Main Title with Magnetic Effect */}
               <h1
-                className="hero-title font-montserrat text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black mb-6 sm:mb-8 leading-tight"
+                className="hero-title font-montserrat text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 leading-tight"
                 style={{ opacity: opacity }}
               >
                 <div className="magnetic-text-line overflow-hidden">

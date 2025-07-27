@@ -401,7 +401,7 @@
     
     /* Improve readability on small screens */
     .magne-gradient-text {
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+      -webkit-text-stroke: 0px rgba(255, 255, 255, 0.0);
     }
   }
 

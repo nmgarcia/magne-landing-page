@@ -35,7 +35,7 @@ export const translations = {
     techConsulting: 'Consultoría Tecnológica',
     consultingDescription: 'Asesoramos en decisiones tecnológicas estratégicas para optimizar procesos y hacer tu negocio más eficiente y competitivo.',
     
-    viewAllServices: 'Ver Todos los Servicios',
+    viewAllServices: 'Te interesa? Hablemos!',
 
     // About Section
     aboutUs: 'SOBRE NOSOTROS',
@@ -43,10 +43,10 @@ export const translations = {
     createSolutions: 'Creamos Soluciones',
     aboutDescription: 'En Magne Software Solutions creemos en el poder de la tecnología para transformar ideas en realidades. Somos un equipo apasionado que diseña y desarrolla software a medida, con un enfoque en la innovación, calidad y cercanía con nuestros clientes.',
     ourVision: '🎯 Nuestra Visión',
-    visionText: 'Ser consultora software y staff augmentation de empresas de videojuegos',
+    visionText: 'Ser la consultora tecnológica de referencia para empresas innovadoras, ofreciendo soluciones de software y servicios de staff augmentation con un enfoque humano, creativo y de alta calidad.',
     ourMission: '💼 Nuestra Misión',
     missionText: 'Satisfacer necesidades de clientes locales, nacionales e internacionales construyendo sitios de calidad y a medida',
-    learnMore: 'Conoce más sobre nosotros',
+    learnMore: 'Hablemos!',
     coreValues: 'Nuestros Valores Fundamentales',
     valuesDescription: 'Los principios que guían nuestro trabajo y definen nuestra cultura empresarial',
     
@@ -60,7 +60,7 @@ export const translations = {
     
     // Stats
     yearsExperience: 'Años de experiencia',
-    projectsCompleted: 'Proyectos completados',
+    projectsCompleted: 'Proyectos',
 
     // Contact Section
     contactUs: 'CONTÁCTANOS',
@@ -100,7 +100,7 @@ export const translations = {
     other: 'Otro',
 
     // Footer
-    allRightsReserved: '© 2024 Magne Software Solutions. Todos los derechos reservados.',
+    allRightsReserved: '© 2025 Magne Software Solutions. Todos los derechos reservados.',
     
     // Loading
     magnetizingIdeas: 'MAGNETIZANDO IDEAS...'
@@ -141,7 +141,7 @@ export const translations = {
     techConsulting: 'Tech Consulting',
     consultingDescription: 'We advise on strategic technological decisions to optimize processes and make your business more efficient and competitive.',
     
-    viewAllServices: 'View All Services',
+    viewAllServices: 'Interested? Talk to us!',
 
     // About Section
     aboutUs: 'ABOUT US',
@@ -149,10 +149,10 @@ export const translations = {
     createSolutions: 'Create Solutions',
     aboutDescription: 'At Magne Software Solutions, we believe in the power of technology to transform ideas into realities. We are a passionate team that designs and develops custom software, with a focus on innovation, quality and closeness to our clients.',
     ourVision: '🎯 Our Vision',
-    visionText: 'To be a software consulting and staff augmentation company for gaming companies',
+    visionText: 'To be the leading technology consultancy for innovative companies, offering software solutions and staff augmentation services with a human, creative, and high-quality approach.',
     ourMission: '💼 Our Mission',
     missionText: 'To satisfy the needs of local, national and international clients by building quality and custom sites',
-    learnMore: 'Learn more about us',
+    learnMore: 'Let\'s talk',
     coreValues: 'Our Core Values',
     valuesDescription: 'The principles that guide our work and define our corporate culture',
     
@@ -166,7 +166,7 @@ export const translations = {
     
     // Stats
     yearsExperience: 'Years of experience',
-    projectsCompleted: 'Projects completed',
+    projectsCompleted: 'Projects',
 
     // Contact Section
     contactUs: 'CONTACT US',
@@ -206,7 +206,7 @@ export const translations = {
     other: 'Other',
 
     // Footer
-    allRightsReserved: '© 2024 Magne Software Solutions. All rights reserved.',
+    allRightsReserved: '© 2025 Magne Software Solutions. All rights reserved.',
     
     // Loading
     magnetizingIdeas: 'MAGNETIZING IDEAS...'
