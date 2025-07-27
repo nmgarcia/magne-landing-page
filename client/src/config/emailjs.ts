@@ -7,13 +7,23 @@
 
 export const emailjsConfig = {
   serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID', 
+  // Template para confirmación al cliente
+  clientTemplateId: import.meta.env.VITE_EMAILJS_CLIENT_TEMPLATE_ID || 'YOUR_CLIENT_TEMPLATE_ID',
+  // Template para notificación al admin
+  adminTemplateId: import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID || 'YOUR_ADMIN_TEMPLATE_ID',
   publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY'
 };
 
-// Template Variables that will be sent to EmailJS:
+// Template Variables para Client Confirmation:
+// - to_name: User's name (recipient)
+// - to_email: User's email
+// - from_name: 'Magne Software'
+// - service_interest: Selected service
+
+// Template Variables para Admin Notification:
 // - from_name: User's name
-// - from_email: User's email  
-// - subject: Selected service/subject
+// - reply_to: User's email  
+// - service_interest: Selected service/subject
 // - message: User's message
-// - to_name: 'Magne Software' (recipient name)
+// - contact_date: Current date
+// - to_name: 'Mariano García' (admin name)

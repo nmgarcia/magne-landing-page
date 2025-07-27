@@ -43,19 +43,44 @@ export default function ContactSection() {
     setShowError(false);
 
     try {
-      // EmailJS integration
-      await emailjs.send(
+      const currentDate = new Date().toLocaleString('es-AR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      // Enviar email de confirmación al cliente
+      const clientEmailPromise = emailjs.send(
         emailjsConfig.serviceId,
-        emailjsConfig.templateId,
+        emailjsConfig.clientTemplateId,
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_name: 'Magne Software',
+          to_name: formData.name,
+          to_email: formData.email,
+          from_name: 'Magne Software',
+          service_interest: formData.subject,
         },
         emailjsConfig.publicKey
       );
+
+      // Enviar email de notificación al admin
+      const adminEmailPromise = emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.adminTemplateId,
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          service_interest: formData.subject,
+          message: formData.message,
+          contact_date: currentDate,
+          to_name: 'Mariano García',
+        },
+        emailjsConfig.publicKey
+      );
+
+      // Enviar ambos emails en paralelo
+      await Promise.all([clientEmailPromise, adminEmailPromise]);
 
       setShowSuccess(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
@@ -64,7 +89,7 @@ export default function ContactSection() {
         setShowSuccess(false);
       }, 5000);
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error sending emails:", error);
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
