@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../hooks/useLanguage";
-import { useAnimations } from "@/hooks/useAnimations";
+import { useOptimizedAnimations } from "@/hooks/useOptimizedAnimations";
 
 interface HeroSectionProps {
   isLoading?: boolean;
 }
 export default function HeroSection({ isLoading = false }: HeroSectionProps) {
   const { t } = useLanguage();
-  const { animateHeroElements } = useAnimations();
+  const { animateHeroElements } = useOptimizedAnimations();
   const sectionRef = useRef<HTMLDivElement>(null);
   const typewriterRef = useRef<HTMLSpanElement>(null);
   const heroSubtitle = t("heroSubtitle");

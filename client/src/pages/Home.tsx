@@ -8,11 +8,11 @@ import ServicesSection from "../components/ServicesSection";
 import AboutSection from "../components/AboutSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
-import { useAnimations } from "@/hooks/useAnimations";
+import { useOptimizedAnimations } from "@/hooks/useOptimizedAnimations";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const { initMagneticEffects } = useAnimations();
+  const { initMagneticEffects } = useOptimizedAnimations();
 
   useEffect(() => {
     // Initialize magnetic effects after components are loaded

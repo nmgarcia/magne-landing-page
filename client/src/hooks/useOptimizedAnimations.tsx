@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-export function useAnimations() {
+export function useOptimizedAnimations() {
   const isInitialized = useRef(false);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export function useAnimations() {
           easing: "easeOutExpo",
           duration: 800,
           delay: 500,
-          complete: onComplete, // <-- callback al terminar
+          complete: onComplete,
         })
         .add({
           targets: ".hero-title",
@@ -89,18 +89,17 @@ export function useAnimations() {
 
   const animateServicesSection = () => {
     if (window.gsap && window.ScrollTrigger) {
-      // Enhanced bidirectional scroll animation system
-      const createBidirectionalAnimation = (
+      // Optimized bidirectional scroll animation system
+      const createOptimizedAnimation = (
         selector: string,
-        staggerDelay = 0.1
+        staggerDelay = 0.08
       ) => {
         const elements = document.querySelectorAll(selector);
 
         elements.forEach((element, index) => {
-          // Add magnetic-element class for CSS transitions
           element.classList.add("magnetic-element");
 
-          // Create ScrollTrigger for bidirectional animation
+          // Optimized ScrollTrigger with better thresholds
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
@@ -111,7 +110,7 @@ export function useAnimations() {
                 setTimeout(() => {
                   element.classList.add("assembled");
                   element.classList.remove("disassembled");
-                }, index * staggerDelay * 1000);
+                }, index * staggerDelay * 600); // Faster timing
               },
               onLeave: () => {
                 element.classList.add("disassembled");
@@ -121,7 +120,7 @@ export function useAnimations() {
                 setTimeout(() => {
                   element.classList.add("assembled");
                   element.classList.remove("disassembled");
-                }, (elements.length - index - 1) * staggerDelay * 1000);
+                }, (elements.length - index - 1) * staggerDelay * 600);
               },
               onLeaveBack: () => {
                 element.classList.add("disassembled");
@@ -130,9 +129,9 @@ export function useAnimations() {
             },
           });
 
-          // Subtle bottom-to-top particle animation within the services section
-          const createParticleAssembly = () => {
-            const particleCount = 10;
+          // Optimized particle effects
+          const createOptimizedParticles = () => {
+            const particleCount = 8; // Reduced for better performance
             const section = document.querySelector("#services") as HTMLElement;
             if (!section) return;
 
@@ -143,30 +142,29 @@ export function useAnimations() {
 
               particle.style.cssText = `
                 position: absolute;
-                width: 4px;
-                height: 4px;
+                width: 3px;
+                height: 3px;
                 background: hsl(25, 95%, 53%);
                 border-radius: 50%;
                 left: ${startX}px;
                 top: ${startY}px;
-                opacity: 0.8;
-                box-shadow: 0 0 10px hsl(25, 95%, 53%);
+                opacity: 0.7;
+                box-shadow: 0 0 8px hsl(25, 95%, 53%);
                 z-index: 10;
                 pointer-events: none;
               `;
 
               section.appendChild(particle);
 
-              // Bottom-to-top animation within section
               if (window.anime) {
                 window.anime({
                   targets: particle,
                   translateY: [-section.offsetHeight],
-                  translateX: [Math.random() * 80 - 40],
-                  opacity: [0.8, 1, 0.6, 0],
-                  scale: [0.5, 1.5, 1, 0],
-                  duration: 3000 + Math.random() * 2000,
-                  delay: i * 200,
+                  translateX: [Math.random() * 60 - 30],
+                  opacity: [0.7, 1, 0.5, 0],
+                  scale: [0.5, 1.2, 1, 0],
+                  duration: 2500 + Math.random() * 1500,
+                  delay: i * 150,
                   easing: "easeOutQuad",
                   complete: () => particle.remove(),
                 });
@@ -174,29 +172,28 @@ export function useAnimations() {
             }
           };
 
-          // Trigger particle effect on assembly
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 90%",
-              onEnter: createParticleAssembly,
+              onEnter: createOptimizedParticles,
             },
           });
         });
       };
 
-      // Apply enhanced animations to services elements with staggered assembly
-      createBidirectionalAnimation(".services-title", 0);
-      createBidirectionalAnimation(".services-subtitle", 0.08);
-      createBidirectionalAnimation(".service-card", 0.12);
+      // Apply optimized animations
+      createOptimizedAnimation(".services-title", 0);
+      createOptimizedAnimation(".services-subtitle", 0.06);
+      createOptimizedAnimation(".service-card", 0.08);
     }
   };
 
   const animateAboutSection = () => {
     if (window.gsap && window.ScrollTrigger) {
-      const createAboutBidirectionalAnimation = (
+      const createAboutOptimizedAnimation = (
         selector: string,
-        staggerDelay = 0.12,
+        staggerDelay = 0.08,
         particleColor = "hsl(262, 72%, 57%)"
       ) => {
         const elements = document.querySelectorAll(selector);
@@ -204,7 +201,6 @@ export function useAnimations() {
         elements.forEach((element, index) => {
           element.classList.add("magnetic-element");
 
-          // Enhanced bidirectional animation for about section
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
@@ -215,7 +211,7 @@ export function useAnimations() {
                 setTimeout(() => {
                   element.classList.add("assembled");
                   element.classList.remove("disassembled");
-                }, index * staggerDelay * 1000);
+                }, index * staggerDelay * 600);
               },
               onLeave: () => {
                 element.classList.add("disassembled");
@@ -225,7 +221,7 @@ export function useAnimations() {
                 setTimeout(() => {
                   element.classList.add("assembled");
                   element.classList.remove("disassembled");
-                }, (elements.length - index - 1) * staggerDelay * 1000);
+                }, (elements.length - index - 1) * staggerDelay * 600);
               },
               onLeaveBack: () => {
                 element.classList.add("disassembled");
@@ -234,9 +230,8 @@ export function useAnimations() {
             },
           });
 
-          // Subtle left-to-right particle animation within the about section
-          const createAboutParticleEffect = () => {
-            const particleCount = 8;
+          const createAboutOptimizedParticles = () => {
+            const particleCount = 6;
             const section = document.querySelector("#about") as HTMLElement;
             if (!section) return;
 
@@ -252,7 +247,7 @@ export function useAnimations() {
                 border-radius: 50%;
                 left: 0px;
                 top: ${startY}px;
-                opacity: 0.8;
+                opacity: 0.7;
                 box-shadow: 0 0 8px ${particleColor};
                 z-index: 10;
                 pointer-events: none;
@@ -264,11 +259,11 @@ export function useAnimations() {
                 window.anime({
                   targets: particle,
                   translateX: [section.offsetWidth],
-                  translateY: [Math.random() * 60 - 30],
-                  opacity: [0.8, 1, 0.7, 0],
-                  scale: [0.5, 1.3, 1, 0],
-                  duration: 4000 + Math.random() * 2000,
-                  delay: i * 300,
+                  translateY: [Math.random() * 40 - 20],
+                  opacity: [0.7, 1, 0.6, 0],
+                  scale: [0.5, 1.1, 1, 0],
+                  duration: 3000 + Math.random() * 1500,
+                  delay: i * 200,
                   easing: "easeInOutQuad",
                   complete: () => particle.remove(),
                 });
@@ -280,46 +275,26 @@ export function useAnimations() {
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              onEnter: createAboutParticleEffect,
+              onEnter: createAboutOptimizedParticles,
             },
           });
         });
       };
 
-      // Apply enhanced animations with different colors and timings
-      createAboutBidirectionalAnimation(
-        ".about-title",
-        0,
-        "hsl(262, 72%, 57%)"
-      );
-      createAboutBidirectionalAnimation(
-        ".about-description",
-        0.08,
-        "hsl(217, 91%, 60%)"
-      );
-      createAboutBidirectionalAnimation(
-        ".vision-item",
-        0.1,
-        "hsl(25, 95%, 53%)"
-      );
-      createAboutBidirectionalAnimation(
-        ".mission-item",
-        0.12,
-        "hsl(262, 72%, 57%)"
-      );
-      createAboutBidirectionalAnimation(
-        ".value-card",
-        0.06,
-        "hsl(25, 95%, 53%)"
-      );
+      // Apply optimized about animations
+      createAboutOptimizedAnimation(".about-title", 0, "hsl(262, 72%, 57%)");
+      createAboutOptimizedAnimation(".about-description", 0.06, "hsl(217, 91%, 60%)");
+      createAboutOptimizedAnimation(".vision-item", 0.08, "hsl(25, 95%, 53%)");
+      createAboutOptimizedAnimation(".mission-item", 0.1, "hsl(262, 72%, 57%)");
+      createAboutOptimizedAnimation(".value-card", 0.05, "hsl(25, 95%, 53%)");
     }
   };
 
   const animateContactSection = () => {
     if (window.gsap && window.ScrollTrigger) {
-      const createContactBidirectionalAnimation = (
+      const createContactOptimizedAnimation = (
         selector: string,
-        staggerDelay = 0.15,
+        staggerDelay = 0.08,
         particleColor = "hsl(217, 91%, 60%)"
       ) => {
         const elements = document.querySelectorAll(selector);
@@ -327,7 +302,6 @@ export function useAnimations() {
         elements.forEach((element, index) => {
           element.classList.add("magnetic-element");
 
-          // Enhanced bidirectional animation for contact section
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
@@ -338,7 +312,7 @@ export function useAnimations() {
                 setTimeout(() => {
                   element.classList.add("assembled");
                   element.classList.remove("disassembled");
-                }, index * staggerDelay * 1000);
+                }, index * staggerDelay * 600);
               },
               onLeave: () => {
                 element.classList.add("disassembled");
@@ -348,7 +322,7 @@ export function useAnimations() {
                 setTimeout(() => {
                   element.classList.add("assembled");
                   element.classList.remove("disassembled");
-                }, (elements.length - index - 1) * staggerDelay * 1000);
+                }, (elements.length - index - 1) * staggerDelay * 600);
               },
               onLeaveBack: () => {
                 element.classList.add("disassembled");
@@ -357,9 +331,8 @@ export function useAnimations() {
             },
           });
 
-          // Subtle right-to-left particle animation within the contact section
-          const createContactParticleEffect = () => {
-            const particleCount = 6;
+          const createContactOptimizedParticles = () => {
+            const particleCount = 5;
             const section = document.querySelector("#contact") as HTMLElement;
             if (!section) return;
 
@@ -369,14 +342,14 @@ export function useAnimations() {
 
               particle.style.cssText = `
                 position: absolute;
-                width: 4px;
-                height: 4px;
+                width: 3px;
+                height: 3px;
                 background: ${particleColor};
                 border-radius: 50%;
                 left: ${section.offsetWidth}px;
                 top: ${startY}px;
-                opacity: 0.8;
-                box-shadow: 0 0 10px ${particleColor};
+                opacity: 0.7;
+                box-shadow: 0 0 8px ${particleColor};
                 z-index: 10;
                 pointer-events: none;
               `;
@@ -387,11 +360,11 @@ export function useAnimations() {
                 window.anime({
                   targets: particle,
                   translateX: [-section.offsetWidth],
-                  translateY: [Math.random() * 50 - 25],
-                  opacity: [0.8, 1, 0.8, 0],
-                  scale: [0.6, 1.4, 1.1, 0],
-                  duration: 3500 + Math.random() * 2000,
-                  delay: i * 350,
+                  translateY: [Math.random() * 40 - 20],
+                  opacity: [0.7, 1, 0.7, 0],
+                  scale: [0.6, 1.2, 1, 0],
+                  duration: 3000 + Math.random() * 1500,
+                  delay: i * 250,
                   easing: "easeInOutQuad",
                   complete: () => particle.remove(),
                 });
@@ -403,33 +376,17 @@ export function useAnimations() {
             scrollTrigger: {
               trigger: element,
               start: "top 80%",
-              onEnter: createContactParticleEffect,
+              onEnter: createContactOptimizedParticles,
             },
           });
         });
       };
 
-      // Apply enhanced animations with blue particle effects
-      createContactBidirectionalAnimation(
-        ".contact-title",
-        0,
-        "hsl(217, 91%, 60%)"
-      );
-      createContactBidirectionalAnimation(
-        ".contact-description",
-        0.08,
-        "hsl(25, 95%, 53%)"
-      );
-      createContactBidirectionalAnimation(
-        ".contact-method",
-        0.1,
-        "hsl(262, 72%, 57%)"
-      );
-      createContactBidirectionalAnimation(
-        ".contact-form",
-        0.06,
-        "hsl(217, 91%, 60%)"
-      );
+      // Apply optimized contact animations
+      createContactOptimizedAnimation(".contact-title", 0, "hsl(217, 91%, 60%)");
+      createContactOptimizedAnimation(".contact-description", 0.06, "hsl(25, 95%, 53%)");
+      createContactOptimizedAnimation(".contact-method", 0.08, "hsl(262, 72%, 57%)");
+      createContactOptimizedAnimation(".contact-form", 0.05, "hsl(217, 91%, 60%)");
     }
   };
 

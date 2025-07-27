@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { useAnimations } from '../hooks/useAnimations';
+import { useOptimizedAnimations } from '../hooks/useOptimizedAnimations';
 
 export default function AboutSection() {
   const { t } = useLanguage();
-  const { animateAboutSection } = useAnimations();
+  const { animateAboutSection } = useOptimizedAnimations();
 
   useEffect(() => {
     const timer = setTimeout(() => {
