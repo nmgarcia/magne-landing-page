@@ -70,63 +70,63 @@ export default function ServicesSection() {
         <div className="absolute bottom-20 right-10 w-24 h-24 bg-violet-500/20 rounded-full magnetic-float"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 section-content">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 section-content">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="services-badge inline-flex items-center px-4 py-2 bg-violet-500/20 border border-violet-500/30 rounded-full mb-6">
-            <span className="text-sm font-jetbrains text-orange-500">{t('ourServices')}</span>
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div className="services-badge inline-flex items-center px-3 sm:px-4 py-2 bg-violet-500/20 border border-violet-500/30 rounded-full mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm font-jetbrains text-orange-500">{t('ourServices')}</span>
           </div>
-          <h2 className="services-title font-montserrat text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="services-title font-montserrat text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
             <span>{t('softwareSolutions')}</span>
             <br />
             <span className="magne-gradient-text gradient-shift">{t('attractResults')}</span>
           </h2>
-          <p className="services-subtitle text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="services-subtitle text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0">
             {t('servicesDescription')}
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="service-card group relative bg-gradient-to-br from-slate-800 to-slate-700 p-8 rounded-xl border border-violet-500/20 hover:border-orange-500/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 service-card-container"
+              className="service-card group relative bg-gradient-to-br from-slate-800 to-slate-700 p-4 sm:p-6 lg:p-8 rounded-xl border border-violet-500/20 hover:border-orange-500/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 service-card-container"
               data-testid={`service-card-${index}`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-violet-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
-                <div className={`service-icon w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <i className={`${service.icon} text-2xl text-white`}></i>
+                <div className={`service-icon w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <i className={`${service.icon} text-lg sm:text-xl lg:text-2xl text-white`}></i>
                 </div>
-                <h3 className="font-montserrat text-2xl font-bold mb-4 group-hover:text-orange-500 transition-colors duration-300">
+                <h3 className="font-montserrat text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4 group-hover:text-orange-500 transition-colors duration-300 leading-tight">
                   {service.title}
                 </h3>
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                   {service.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {service.tags.map((tag, tagIndex) => (
                     <span 
                       key={tagIndex}
-                      className="px-3 py-1 bg-violet-500/20 text-orange-500 text-sm rounded-full"
+                      className="px-2 sm:px-3 py-1 bg-violet-500/20 text-orange-500 text-xs sm:text-sm rounded-full"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
-              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <i className="fas fa-arrow-up-right text-orange-500"></i>
+              <div className="absolute top-3 sm:top-4 right-3 sm:right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <i className="fas fa-arrow-up-right text-orange-500 text-sm sm:text-base"></i>
               </div>
             </div>
           ))}
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-20">
+        <div className="text-center mt-12 sm:mt-16 lg:mt-20">
           <button 
-            className="magnetic-btn bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-500 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+            className="magnetic-btn bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-500 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
             data-testid="view-all-services"
           >
             <span>{t('viewAllServices')}</span>

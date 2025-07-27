@@ -66,9 +66,9 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
     >
       {/* Animated Background Shapes */}
       <div className="absolute inset-0">
-        <div className="morphing-shape absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-violet-500/20 to-orange-500/20 morph-shape"></div>
+        <div className="morphing-shape absolute top-1/4 left-1/4 w-32 h-32 md:w-64 md:h-64 bg-gradient-to-r from-violet-500/20 to-orange-500/20 morph-shape"></div>
         <div
-          className="morphing-shape absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/15 to-purple-500/15 morph-shape"
+          className="morphing-shape absolute bottom-1/4 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-gradient-to-r from-blue-500/15 to-purple-500/15 morph-shape"
           style={{ animationDelay: "2s" }}
         ></div>
       </div>
@@ -125,24 +125,24 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
         </svg>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {!isLoading && (
           <>
             <div className="text-center max-w-5xl mx-auto">
               {/* Animated Badge */}
               <div
-                className="hero-badge hero-animate-delay-1 inline-flex items-center px-6 py-3 bg-violet-500/20 border border-violet-500/30 rounded-full mb-8 backdrop-blur-sm"
+                className="hero-badge hero-animate-delay-1 inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-violet-500/20 border border-violet-500/30 rounded-full mb-6 sm:mb-8 backdrop-blur-sm"
                 style={{ opacity: opacity }}
               >
-                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse mr-3"></div>
-                <span className="text-sm font-jetbrains tracking-wider">
+                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse mr-2 sm:mr-3"></div>
+                <span className="text-xs sm:text-sm font-jetbrains tracking-wider">
                   {t("heroBadge")}
                 </span>
               </div>
 
               {/* Main Title with Magnetic Effect */}
               <h1
-                className="hero-title font-montserrat text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight"
+                className="hero-title font-montserrat text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black mb-6 sm:mb-8 leading-tight"
                 style={{ opacity: opacity }}
               >
                 <div className="magnetic-text-line overflow-hidden">
@@ -164,7 +164,7 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
 
               {/* Subtitle with Typewriter Effect */}
               <p
-                className="hero-subtitle hero-animate-delay-3 text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+                className="hero-subtitle hero-animate-delay-3 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
                 style={{ opacity: opacity }}
               >
                 <span ref={typewriterRef}></span>
@@ -173,12 +173,12 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
 
               {/* CTA Buttons */}
               <div
-                className="hero-cta hero-animate-delay-4 flex flex-col sm:flex-row gap-6 justify-center items-center"
+                className="hero-cta hero-animate-delay-4 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-4 sm:px-0"
                 style={{ opacity: opacity }}
               >
                 <button
                   onClick={scrollToContact}
-                  className="magnetic-btn bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-500 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+                  className="magnetic-btn bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-500 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl w-full sm:w-auto"
                   data-testid="cta-work-together"
                 >
                   <span>{t("letWorkTogether")}</span>
@@ -186,7 +186,7 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
                 </button>
                 <button
                   onClick={scrollToServices}
-                  className="magnetic-btn border-2 border-violet-500 hover:border-orange-500 hover:bg-orange-500/10 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                  className="magnetic-btn border-2 border-violet-500 hover:border-orange-500 hover:bg-orange-500/10 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
                   data-testid="cta-view-services"
                 >
                   <span>{t("viewServices")}</span>
@@ -194,28 +194,28 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
                 </button>
               </div>
 
-              {/* Floating Tech Icons */}
-              <div className="floating-icons absolute inset-0 pointer-events-none">
+              {/* Floating Tech Icons - Hidden on mobile to avoid overlap */}
+              <div className="floating-icons absolute inset-0 pointer-events-none hidden md:block">
                 <div className="floating-icon absolute top-1/4 left-10 text-orange-500 opacity-30 magnetic-float">
-                  <i className="fab fa-react text-3xl"></i>
+                  <i className="fab fa-react text-2xl lg:text-3xl"></i>
                 </div>
                 <div
                   className="floating-icon absolute top-1/3 right-16 text-violet-500 opacity-40 magnetic-float"
                   style={{ animationDelay: "1s" }}
                 >
-                  <i className="fab fa-unity text-2xl"></i>
+                  <i className="fab fa-unity text-xl lg:text-2xl"></i>
                 </div>
                 <div
                   className="floating-icon absolute bottom-1/3 left-20 text-blue-500 opacity-35 magnetic-float"
                   style={{ animationDelay: "2s" }}
                 >
-                  <i className="fab fa-node-js text-2xl"></i>
+                  <i className="fab fa-node-js text-xl lg:text-2xl"></i>
                 </div>
                 <div
                   className="floating-icon absolute bottom-1/4 right-10 text-orange-500 opacity-25 magnetic-float"
                   style={{ animationDelay: "3s" }}
                 >
-                  <i className="fas fa-gamepad text-2xl"></i>
+                  <i className="fas fa-gamepad text-xl lg:text-2xl"></i>
                 </div>
               </div>
             </div>

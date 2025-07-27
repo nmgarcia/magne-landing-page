@@ -67,10 +67,20 @@
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(135deg, hsl(222, 84%, 4.9%) 0%, hsl(220, 13%, 18%) 50%, hsl(268, 77%, 35%) 100%);
     cursor: none;
+    /* Better touch targets on mobile */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   html {
     scroll-behavior: smooth;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+  }
+  
+  /* Improve touch scrolling on iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
   }
 
 }
@@ -170,7 +180,7 @@
     opacity: 0.1;
   }
 
-  /* Magnetic Cursor */
+  /* Magnetic Cursor - Hide on touch devices */
   .magnetic-cursor {
     position: fixed;
     top: 0;
@@ -183,6 +193,14 @@
     z-index: 9999;
     mix-blend-mode: difference;
     transition: transform 0.1s ease-out;
+    /* Hide on touch devices */
+    display: none;
+  }
+  
+  @media (hover: hover) and (pointer: fine) {
+    .magnetic-cursor {
+      display: block;
+    }
   }
 
   .magnetic-cursor::before {
@@ -355,6 +373,68 @@
   .section-content {
     position: relative;
     z-index: 10;
+  }
+
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    .service-card:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+    
+    .value-card:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+    
+    .magnetic-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px hsla(25, 95%, 53%, 0.2);
+    }
+    
+    /* Reduce animation intensity on mobile */
+    .morphing-shape {
+      animation-duration: 6s;
+    }
+    
+    .magnetic-float {
+      animation-duration: 8s;
+    }
+    
+    /* Improve readability on small screens */
+    .magne-gradient-text {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  /* Better touch targets */
+  @media (hover: none) {
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Disable hover effects on touch devices */
+    .service-card:hover,
+    .value-card:hover,
+    .magnetic-btn:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  /* Landscape mobile optimizations */
+  @media (max-width: 896px) and (orientation: landscape) {
+    .hero-title {
+      font-size: 2.5rem !important;
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem !important;
+    }
+    
+    section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
   }
 }
 
