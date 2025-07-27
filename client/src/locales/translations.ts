@@ -88,6 +88,7 @@ export const translations = {
     // Success Message
     successMessage: '¡Mensaje enviado exitosamente! Te contactaremos pronto.',
     errorMessage: 'Error al enviar el mensaje. Por favor intenta nuevamente.',
+    fastResponse: 'Respuesta rápida garantizada',
     
     // Service Options
     gameDevOption: 'Desarrollo de Videojuegos',
@@ -193,6 +194,7 @@ export const translations = {
     // Success Message
     successMessage: "Message sent successfully! We'll contact you soon.",
     errorMessage: 'Error sending message. Please try again.',
+    fastResponse: 'Quick response guaranteed',
     
     // Service Options
     gameDevOption: 'Game Development',

@@ -126,71 +126,39 @@ export default function ContactSection() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 section-content">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
-          {/* Contact Info Side */}
-          <div className="contact-info">
-            <div className="contact-badge inline-flex items-center px-3 sm:px-4 py-2 bg-orange-500/20 border border-orange-500/30 rounded-full mb-4 sm:mb-6">
-              <span className="text-xs sm:text-sm font-jetbrains text-orange-500">
-                {t("contactUs")}
-              </span>
-            </div>
-
-            <h2 className="contact-title font-montserrat text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
-              <span>{t("writeToUs")}</span>
-              <br />
-              <span className="magne-gradient-text gradient-shift">
-                {t("workTogether")}
-              </span>
-            </h2>
-
-            <p className="contact-description text-base sm:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-12 leading-relaxed">
-              {t("contactDescription")}
-            </p>
-
-            {/* Contact Methods */}
-            <div className="space-y-4 sm:space-y-6 mb-8 sm:mb-12">
-              {contactMethods.map((method, index) => (
-                <div
-                  key={index}
-                  className="contact-method flex items-center p-3 sm:p-4 bg-slate-800/50 rounded-xl border border-violet-500/20 hover:border-orange-500/50 transition-all duration-300"
-                  data-testid={`contact-method-${index}`}
-                >
-                  <div
-                    className={`method-icon w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r ${method.gradient} rounded-lg flex items-center justify-center mr-3 sm:mr-4`}
-                  >
-                    <i className={`${method.icon} text-white text-sm sm:text-base`}></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white text-sm sm:text-base">{method.title}</h4>
-                    <p className="text-gray-300 text-sm sm:text-base">{method.info}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Social Links */}
-            <div className="social-links">
-              <h4 className="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">{t("followUs")}</h4>
-              <div className="flex space-x-3 sm:space-x-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.href}
-                    className={`social-link w-10 sm:w-12 h-10 sm:h-12 bg-slate-800 ${social.color} rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110`}
-                    data-testid={`social-link-${index}`}
-                  >
-                    <i className={`${social.icon} text-white text-sm sm:text-base`}></i>
-                  </a>
-                ))}
-              </div>
-            </div>
+        {/* Header Section - Visible on all devices */}
+        <div className="text-center mb-8 lg:mb-12">
+          <div className="contact-badge inline-flex items-center px-3 sm:px-4 py-2 bg-orange-500/20 border border-orange-500/30 rounded-full mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm font-jetbrains text-orange-500">
+              {t("contactUs")}
+            </span>
           </div>
 
-          {/* Contact Form Side */}
-          <div className="contact-form-container mt-8 lg:mt-0">
+          <h2 className="contact-title font-montserrat text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
+            <span>{t("writeToUs")}</span>
+            <br />
+            <span className="magne-gradient-text gradient-shift">
+              {t("workTogether")}
+            </span>
+          </h2>
+
+          <p className="contact-description text-base sm:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
+            {t("contactDescription")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
+          {/* Contact Form Side - First on mobile */}
+          <div className="contact-form-container order-1 lg:order-2">
+            {/* Mobile Form Header */}
+            <div className="lg:hidden mb-6 text-center">
+              <h3 className="text-xl font-semibold text-white mb-2">{t("sendMessage")}</h3>
+              <p className="text-gray-300 text-sm">✨ {t("fastResponse")}</p>
+            </div>
+            
             <form
               onSubmit={handleSubmit}
-              className="contact-form bg-gradient-to-b from-slate-800/80 to-slate-700/80 backdrop-blur-lg p-4 sm:p-6 lg:p-8 rounded-2xl border border-violet-500/20 hover:border-orange-500/30 transition-all duration-500"
+              className="contact-form bg-gradient-to-b from-slate-800/80 to-slate-700/80 backdrop-blur-lg p-4 sm:p-6 lg:p-8 rounded-2xl border-2 lg:border border-orange-500/40 lg:border-violet-500/20 hover:border-orange-500/60 lg:hover:border-orange-500/30 transition-all duration-500 shadow-xl lg:shadow-none"
               data-testid="contact-form"
             >
               <div className="space-y-4 sm:space-y-6">
@@ -326,6 +294,47 @@ export default function ContactSection() {
                 </div>
               </div>
             )}
+          </div>
+
+          {/* Contact Info Side - Second on mobile */}
+          <div className="contact-info order-2 lg:order-1 mt-8 lg:mt-0">
+            {/* Contact Methods */}
+            <div className="space-y-4 sm:space-y-6 mb-8 sm:mb-12">
+              {contactMethods.map((method, index) => (
+                <div
+                  key={index}
+                  className="contact-method flex items-center p-3 sm:p-4 bg-slate-800/50 rounded-xl border border-violet-500/20 hover:border-orange-500/50 transition-all duration-300"
+                  data-testid={`contact-method-${index}`}
+                >
+                  <div
+                    className={`method-icon w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r ${method.gradient} rounded-lg flex items-center justify-center mr-3 sm:mr-4`}
+                  >
+                    <i className={`${method.icon} text-white text-sm sm:text-base`}></i>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white text-sm sm:text-base">{method.title}</h4>
+                    <p className="text-gray-300 text-sm sm:text-base">{method.info}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Social Links */}
+            <div className="social-links">
+              <h4 className="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">{t("followUs")}</h4>
+              <div className="flex space-x-3 sm:space-x-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className={`social-link w-10 sm:w-12 h-10 sm:h-12 bg-slate-800 ${social.color} rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110`}
+                    data-testid={`social-link-${index}`}
+                  >
+                    <i className={`${social.icon} text-white text-sm sm:text-base`}></i>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
