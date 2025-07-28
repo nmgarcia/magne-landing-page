@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "../hooks/useLanguage";
 import { useSmoothAnimations } from "../hooks/useSmoothAnimations";
 import emailjs from "@emailjs/browser";
+import ParticleCanvas from "./ParticleCanvas";
 
 export default function ContactSection() {
   const { t } = useLanguage();
@@ -157,6 +158,13 @@ export default function ContactSection() {
       id="contact"
       className="py-24 relative overflow-hidden section-background"
     >
+      <ParticleCanvas 
+        particleCount={30}
+        direction="left"
+        speed={0.3}
+        opacity={0.4}
+        color="#f97316"
+      />
       {/* Section Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-800 via-slate-900 to-black z-0"></div>
 

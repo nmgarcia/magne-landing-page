@@ -42,6 +42,13 @@ A bilingual (Spanish/English) landing page for Magne Software built with React, 
   - Reduced exit animation intensity to prevent abrupt visual transitions
   - Implemented CSS transitions optimized for mobile and touch devices
   - Added proper webkit prefixes and will-change properties for better performance
+- Restored full bidirectional scroll animations and section-specific particle effects (January 28, 2025):
+  - Re-implemented entrance and exit animations with smooth transitions using toggleActions: "play none none reverse"
+  - Added section-specific particle effects: Services (upward blue particles), About (rightward purple particles), Contact (leftward orange particles)
+  - Created configurable ParticleCanvas component with direction, speed, opacity, and color props
+  - Implemented useSectionNavigation hook for fixed scroll behavior between sections on desktop
+  - Added proper section IDs (hero, services, about, contact) for navigation system
+  - Enhanced GSAP ScrollTrigger with onEnter, onLeave, onEnterBack, and onLeaveBack callbacks for complete animation control
 
 ## User Preferences
 - Language: Spanish/English bilingual support required

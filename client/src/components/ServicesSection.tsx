@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "../hooks/useLanguage";
 import { useSmoothAnimations } from "../hooks/useSmoothAnimations";
+import ParticleCanvas from "./ParticleCanvas";
 
 export default function ServicesSection() {
   const { t } = useLanguage();
@@ -72,6 +73,13 @@ export default function ServicesSection() {
       id="services"
       className="py-24 relative overflow-hidden section-background"
     >
+      <ParticleCanvas 
+        particleCount={40}
+        direction="up"
+        speed={0.5}
+        opacity={0.6}
+        color="#3b82f6"
+      />
       {/* Section Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 z-0"></div>
 

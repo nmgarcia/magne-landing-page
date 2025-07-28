@@ -124,13 +124,13 @@ export function useSmoothAnimations() {
             filter: "blur(5px)"
           });
 
-          // Controlled entrance animation only
+          // Controlled entrance and exit animations
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              end: "top 60%",
-              toggleActions: "play none none none",
+              end: "bottom 15%",
+              toggleActions: "play none none reverse",
               fastScrollEnd: isIOS ? 2500 : false,
               preventOverlaps: true,
               onEnter: () => {
@@ -145,18 +145,51 @@ export function useSmoothAnimations() {
                   onComplete: () => {
                     element.classList.add("assembled");
                     element.classList.remove("disassembled");
-                    // Set final stable state
-                    window.gsap.set(element, {
-                      y: 0,
-                      opacity: 1,
-                      scale: 1,
-                      filter: "blur(0px)",
-                      clearProps: "transform,filter"
-                    });
                     if (callback && index === elements.length - 1) {
                       callback();
                     }
                   }
+                });
+              },
+              onLeave: () => {
+                window.gsap.to(element, {
+                  y: -30,
+                  opacity: 0.3,
+                  scale: 0.95,
+                  filter: "blur(2px)",
+                  duration: 0.4,
+                  ease: "power2.in",
+                  delay: index * 0.05,
+                  onComplete: () => {
+                    element.classList.add("disassembled");
+                    element.classList.remove("assembled");
+                  }
+                });
+              },
+              onEnterBack: () => {
+                window.gsap.to(element, {
+                  y: 0,
+                  opacity: 1,
+                  scale: 1,
+                  filter: "blur(0px)",
+                  duration: 0.6,
+                  ease: "power2.out",
+                  delay: index * 0.05,
+                  onComplete: () => {
+                    element.classList.add("assembled");
+                    element.classList.remove("disassembled");
+                  }
+                });
+              },
+              onLeaveBack: () => {
+                window.gsap.to(element, {
+                  y: 50,
+                  opacity: 0,
+                  scale: 0.9,
+                  filter: "blur(5px)",
+                  duration: 0.5,
+                  ease: "power2.in",
+                  delay: index * 0.05
                 });
               }
             }
@@ -262,13 +295,13 @@ export function useSmoothAnimations() {
             filter: "blur(4px)"
           });
 
-          // Controlled about entrance animation only
+          // Controlled about entrance and exit animations
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              end: "top 60%",
-              toggleActions: "play none none none",
+              end: "bottom 15%",
+              toggleActions: "play none none reverse",
               fastScrollEnd: isIOS ? 2500 : false,
               preventOverlaps: true,
               onEnter: () => {
@@ -283,18 +316,51 @@ export function useSmoothAnimations() {
                   onComplete: () => {
                     element.classList.add("assembled");
                     element.classList.remove("disassembled");
-                    // Lock final state to prevent jumps
-                    window.gsap.set(element, {
-                      y: 0,
-                      opacity: 1,
-                      scale: 1,
-                      filter: "blur(0px)",
-                      clearProps: "transform,filter"
-                    });
                     if (callback && index === elements.length - 1) {
                       callback();
                     }
                   }
+                });
+              },
+              onLeave: () => {
+                window.gsap.to(element, {
+                  y: -25,
+                  opacity: 0.4,
+                  scale: 0.96,
+                  filter: "blur(1px)",
+                  duration: 0.4,
+                  ease: "power2.in",
+                  delay: index * 0.05,
+                  onComplete: () => {
+                    element.classList.add("disassembled");
+                    element.classList.remove("assembled");
+                  }
+                });
+              },
+              onEnterBack: () => {
+                window.gsap.to(element, {
+                  y: 0,
+                  opacity: 1,
+                  scale: 1,
+                  filter: "blur(0px)",
+                  duration: 0.6,
+                  ease: "power2.out",
+                  delay: index * 0.05,
+                  onComplete: () => {
+                    element.classList.add("assembled");
+                    element.classList.remove("disassembled");
+                  }
+                });
+              },
+              onLeaveBack: () => {
+                window.gsap.to(element, {
+                  y: 40,
+                  opacity: 0,
+                  scale: 0.95,
+                  filter: "blur(4px)",
+                  duration: 0.5,
+                  ease: "power2.in",
+                  delay: index * 0.05
                 });
               }
             }
@@ -350,13 +416,13 @@ export function useSmoothAnimations() {
             filter: "blur(3px)"
           });
 
-          // Controlled contact entrance animation only
+          // Controlled contact entrance and exit animations
           window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              end: "top 60%",
-              toggleActions: "play none none none",
+              end: "bottom 15%",
+              toggleActions: "play none none reverse",
               fastScrollEnd: isIOS ? 2500 : false,
               preventOverlaps: true,
               onEnter: () => {
@@ -371,18 +437,51 @@ export function useSmoothAnimations() {
                   onComplete: () => {
                     element.classList.add("assembled");
                     element.classList.remove("disassembled");
-                    // Lock final state to prevent any jumps
-                    window.gsap.set(element, {
-                      y: 0,
-                      opacity: 1,
-                      scale: 1,
-                      filter: "blur(0px)",
-                      clearProps: "transform,filter"
-                    });
                     if (callback && index === elements.length - 1) {
                       callback();
                     }
                   }
+                });
+              },
+              onLeave: () => {
+                window.gsap.to(element, {
+                  y: -20,
+                  opacity: 0.5,
+                  scale: 0.98,
+                  filter: "blur(1px)",
+                  duration: 0.3,
+                  ease: "power2.in",
+                  delay: index * 0.03,
+                  onComplete: () => {
+                    element.classList.add("disassembled");
+                    element.classList.remove("assembled");
+                  }
+                });
+              },
+              onEnterBack: () => {
+                window.gsap.to(element, {
+                  y: 0,
+                  opacity: 1,
+                  scale: 1,
+                  filter: "blur(0px)",
+                  duration: 0.5,
+                  ease: "power2.out",
+                  delay: index * 0.03,
+                  onComplete: () => {
+                    element.classList.add("assembled");
+                    element.classList.remove("disassembled");
+                  }
+                });
+              },
+              onLeaveBack: () => {
+                window.gsap.to(element, {
+                  y: 35,
+                  opacity: 0,
+                  scale: 0.97,
+                  filter: "blur(3px)",
+                  duration: 0.4,
+                  ease: "power2.in",
+                  delay: index * 0.03
                 });
               }
             }
