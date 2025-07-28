@@ -22,13 +22,13 @@ export function useOptimizedAnimations() {
     // Register GSAP ScrollTrigger
     if (window.gsap && window.ScrollTrigger) {
       window.gsap.registerPlugin(window.ScrollTrigger);
-      
+
       // Configure ScrollTrigger for smoother scroll behavior
       window.ScrollTrigger.config({
         autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
         refreshPriority: -90,
       });
-      
+
       // Add smooth scroll behavior for better flow
       window.ScrollTrigger.normalizeScroll(true);
     }
@@ -87,6 +87,7 @@ export function useOptimizedAnimations() {
     }
   };
 
+  const isMobile = window.innerWidth < 768; //TODO: si es mobile tenemos que usar el mismo efecto que el de values createAboutOptimizedAnimation
   const animateServicesSection = () => {
     if (window.gsap && window.ScrollTrigger) {
       // Optimized bidirectional scroll animation system
@@ -283,7 +284,11 @@ export function useOptimizedAnimations() {
 
       // Apply optimized about animations
       createAboutOptimizedAnimation(".about-title", 0, "hsl(262, 72%, 57%)");
-      createAboutOptimizedAnimation(".about-description", 0.06, "hsl(217, 91%, 60%)");
+      createAboutOptimizedAnimation(
+        ".about-description",
+        0.06,
+        "hsl(217, 91%, 60%)"
+      );
       createAboutOptimizedAnimation(".vision-item", 0.08, "hsl(25, 95%, 53%)");
       createAboutOptimizedAnimation(".mission-item", 0.1, "hsl(262, 72%, 57%)");
       createAboutOptimizedAnimation(".value-card", 0.05, "hsl(25, 95%, 53%)");
@@ -383,10 +388,26 @@ export function useOptimizedAnimations() {
       };
 
       // Apply optimized contact animations
-      createContactOptimizedAnimation(".contact-title", 0, "hsl(217, 91%, 60%)");
-      createContactOptimizedAnimation(".contact-description", 0.06, "hsl(25, 95%, 53%)");
-      createContactOptimizedAnimation(".contact-method", 0.08, "hsl(262, 72%, 57%)");
-      createContactOptimizedAnimation(".contact-form", 0.05, "hsl(217, 91%, 60%)");
+      createContactOptimizedAnimation(
+        ".contact-title",
+        0,
+        "hsl(217, 91%, 60%)"
+      );
+      createContactOptimizedAnimation(
+        ".contact-description",
+        0.06,
+        "hsl(25, 95%, 53%)"
+      );
+      createContactOptimizedAnimation(
+        ".contact-method",
+        0.08,
+        "hsl(262, 72%, 57%)"
+      );
+      createContactOptimizedAnimation(
+        ".contact-form",
+        0.05,
+        "hsl(217, 91%, 60%)"
+      );
     }
   };
 
