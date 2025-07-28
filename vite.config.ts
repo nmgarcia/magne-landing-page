@@ -23,5 +23,8 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
+    allowedHosts: [
+      "c8724402-ee72-4b60-8e7e-46b5d8a58212-00-3vxr2zkr7yb6.spock.replit.dev"
+    ],
   },
 });
