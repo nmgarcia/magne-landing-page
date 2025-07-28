@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "../hooks/useLanguage";
 import { useSmoothAnimations } from "../hooks/useSmoothAnimations";
 
 export default function AboutSection() {
   const { t } = useLanguage();
   const { animateAboutSection } = useSmoothAnimations();
+  const [isAnimationReady, setIsAnimationReady] = useState(false);
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -14,7 +15,9 @@ export default function AboutSection() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      animateAboutSection();
+      animateAboutSection(() => {
+        setIsAnimationReady(true);
+      });
     }, 100);
 
     return () => clearTimeout(timer);

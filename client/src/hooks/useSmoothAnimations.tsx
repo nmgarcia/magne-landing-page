@@ -101,90 +101,88 @@ export function useSmoothAnimations() {
     }
   };
 
-  const animateServicesSection = () => {
+  const animateServicesSection = (onComplete?: () => void) => {
     if (window.gsap && window.ScrollTrigger) {
       const isMobile = window.innerWidth < 768;
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
       
       const createSmoothAnimation = (
         selector: string,
-        staggerDelay = 0.05
+        staggerDelay = 0.05,
+        callback?: () => void
       ) => {
         const elements = document.querySelectorAll(selector);
 
         elements.forEach((element, index) => {
           element.classList.add("magnetic-element");
 
-          // Smooth entrance animation with GSAP
+          // Controlled smooth entrance animation with GSAP
           const tl = window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              end: "bottom 25%",
-              toggleActions: "play none none reverse",
+              end: "bottom 15%",
+              toggleActions: "play none none none",
               // iOS optimizations
               fastScrollEnd: isIOS ? 2500 : false,
               preventOverlaps: true,
               refreshPriority: index,
-            },
-          });
-
-          // Smooth entrance
-          tl.fromTo(element, 
-            {
-              y: 50,
-              opacity: 0,
-              scale: 0.9,
-              filter: "blur(10px)"
-            },
-            {
-              y: 0,
-              opacity: 1,
-              scale: 1,
-              filter: "blur(0px)",
-              duration: 0.8,
-              ease: "power2.out",
-              delay: index * staggerDelay,
-              onComplete: () => {
-                element.classList.add("assembled");
-                element.classList.remove("disassembled");
-              }
-            }
-          );
-
-          // Smooth exit animation
-          const exitTl = window.gsap.timeline({
-            scrollTrigger: {
-              trigger: element,
-              start: "bottom 75%",
-              end: "bottom 0%",
-              toggleActions: "none none play none",
-              fastScrollEnd: isIOS ? 2500 : false,
+              onEnter: () => {
+                // Smooth entrance with controlled timing
+                window.gsap.fromTo(element, 
+                  {
+                    y: 50,
+                    opacity: 0,
+                    scale: 0.9,
+                    filter: "blur(5px)"
+                  },
+                  {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    filter: "blur(0px)",
+                    duration: 0.8,
+                    ease: "power2.out",
+                    delay: index * staggerDelay,
+                    onComplete: () => {
+                      element.classList.add("assembled");
+                      element.classList.remove("disassembled");
+                      if (callback && index === elements.length - 1) {
+                        callback();
+                      }
+                    }
+                  }
+                );
+              },
               onLeave: () => {
+                // Gentle fade out instead of abrupt exit
                 window.gsap.to(element, {
-                  y: -30,
-                  opacity: 0.3,
+                  opacity: 0.6,
+                  scale: 0.98,
+                  duration: 0.3,
+                  ease: "power2.out"
+                });
+              },
+              onEnterBack: () => {
+                // Smooth re-entrance
+                window.gsap.to(element, {
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.out"
+                });
+              },
+              onLeaveBack: () => {
+                // Controlled exit back
+                window.gsap.to(element, {
+                  y: 30,
+                  opacity: 0,
                   scale: 0.95,
-                  filter: "blur(3px)",
                   duration: 0.4,
                   ease: "power2.in",
                   onComplete: () => {
                     element.classList.add("disassembled");
                     element.classList.remove("assembled");
-                  }
-                });
-              },
-              onEnterBack: () => {
-                window.gsap.to(element, {
-                  y: 0,
-                  opacity: 1,
-                  scale: 1,
-                  filter: "blur(0px)",
-                  duration: 0.6,
-                  ease: "power2.out",
-                  onComplete: () => {
-                    element.classList.add("assembled");
-                    element.classList.remove("disassembled");
                   }
                 });
               }
@@ -245,14 +243,30 @@ export function useSmoothAnimations() {
         });
       };
 
+      // Initialize elements as hidden
+      const allElements = document.querySelectorAll(".services-title, .services-subtitle, .service-card");
+      allElements.forEach(element => {
+        element.classList.add("magnetic-element");
+      });
+
       // Apply smooth animations to services elements
-      createSmoothAnimation(".services-title", 0);
-      createSmoothAnimation(".services-subtitle", 0.05);
-      createSmoothAnimation(".service-card", 0.08);
+      let completedAnimations = 0;
+      const totalAnimations = 3;
+      
+      const checkComplete = () => {
+        completedAnimations++;
+        if (completedAnimations === totalAnimations && onComplete) {
+          onComplete();
+        }
+      };
+
+      createSmoothAnimation(".services-title", 0, checkComplete);
+      createSmoothAnimation(".services-subtitle", 0.05, checkComplete);
+      createSmoothAnimation(".service-card", 0.08, checkComplete);
     }
   };
 
-  const animateAboutSection = () => {
+  const animateAboutSection = (onComplete?: () => void) => {
     if (window.gsap && window.ScrollTrigger) {
       const isMobile = window.innerWidth < 768;
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -260,71 +274,72 @@ export function useSmoothAnimations() {
       const createAboutSmoothAnimation = (
         selector: string,
         staggerDelay = 0.04,
-        particleColor = "hsl(262, 72%, 57%)"
+        callback?: () => void
       ) => {
         const elements = document.querySelectorAll(selector);
 
         elements.forEach((element, index) => {
           element.classList.add("magnetic-element");
 
-          // Main smooth animation
+          // Controlled smooth about animation
           const tl = window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              end: "bottom 25%",
-              toggleActions: "play none none reverse",
+              end: "bottom 15%",
+              toggleActions: "play none none none",
               fastScrollEnd: isIOS ? 2500 : false,
               preventOverlaps: true,
-            },
-          });
-
-          tl.fromTo(element, 
-            {
-              y: 40,
-              opacity: 0,
-              scale: 0.95,
-              filter: "blur(8px)"
-            },
-            {
-              y: 0,
-              opacity: 1,
-              scale: 1,
-              filter: "blur(0px)",
-              duration: 0.7,
-              ease: "power2.out",
-              delay: index * staggerDelay,
-              onComplete: () => {
-                element.classList.add("assembled");
-                element.classList.remove("disassembled");
-              }
-            }
-          );
-
-          // Smooth exit
-          window.gsap.timeline({
-            scrollTrigger: {
-              trigger: element,
-              start: "bottom 75%",
-              end: "bottom 0%",
+              onEnter: () => {
+                window.gsap.fromTo(element, 
+                  {
+                    y: 40,
+                    opacity: 0,
+                    scale: 0.95,
+                    filter: "blur(4px)"
+                  },
+                  {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    filter: "blur(0px)",
+                    duration: 0.7,
+                    ease: "power2.out",
+                    delay: index * staggerDelay,
+                    onComplete: () => {
+                      element.classList.add("assembled");
+                      element.classList.remove("disassembled");
+                      if (callback && index === elements.length - 1) {
+                        callback();
+                      }
+                    }
+                  }
+                );
+              },
               onLeave: () => {
+                // Gentle fade instead of jump
                 window.gsap.to(element, {
-                  y: -25,
-                  opacity: 0.4,
-                  scale: 0.96,
-                  filter: "blur(2px)",
+                  opacity: 0.7,
+                  scale: 0.98,
                   duration: 0.3,
-                  ease: "power2.in"
+                  ease: "power2.out"
                 });
               },
               onEnterBack: () => {
                 window.gsap.to(element, {
-                  y: 0,
                   opacity: 1,
                   scale: 1,
-                  filter: "blur(0px)",
-                  duration: 0.5,
+                  duration: 0.4,
                   ease: "power2.out"
+                });
+              },
+              onLeaveBack: () => {
+                window.gsap.to(element, {
+                  y: 25,
+                  opacity: 0,
+                  scale: 0.96,
+                  duration: 0.4,
+                  ease: "power2.in"
                 });
               }
             }
@@ -332,16 +347,32 @@ export function useSmoothAnimations() {
         });
       };
 
-      // Apply smooth about animations
-      createAboutSmoothAnimation(".about-title", 0, "hsl(262, 72%, 57%)");
-      createAboutSmoothAnimation(".about-description", 0.04, "hsl(217, 91%, 60%)");
-      createAboutSmoothAnimation(".vision-item", 0.06, "hsl(25, 95%, 53%)");
-      createAboutSmoothAnimation(".mission-item", 0.08, "hsl(262, 72%, 57%)");
-      createAboutSmoothAnimation(".value-card", 0.03, "hsl(25, 95%, 53%)");
+      // Initialize elements as hidden
+      const allAboutElements = document.querySelectorAll(".about-title, .about-description, .vision-item, .mission-item, .value-card");
+      allAboutElements.forEach(element => {
+        element.classList.add("magnetic-element");
+      });
+
+      // Apply smooth about animations with callback control
+      let completedAboutAnimations = 0;
+      const totalAboutAnimations = 5;
+      
+      const checkAboutComplete = () => {
+        completedAboutAnimations++;
+        if (completedAboutAnimations === totalAboutAnimations && onComplete) {
+          onComplete();
+        }
+      };
+
+      createAboutSmoothAnimation(".about-title", 0, checkAboutComplete);
+      createAboutSmoothAnimation(".about-description", 0.04, checkAboutComplete);
+      createAboutSmoothAnimation(".vision-item", 0.06, checkAboutComplete);
+      createAboutSmoothAnimation(".mission-item", 0.08, checkAboutComplete);
+      createAboutSmoothAnimation(".value-card", 0.03, checkAboutComplete);
     }
   };
 
-  const animateContactSection = () => {
+  const animateContactSection = (onComplete?: () => void) => {
     if (window.gsap && window.ScrollTrigger) {
       const isMobile = window.innerWidth < 768;
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -349,71 +380,72 @@ export function useSmoothAnimations() {
       const createContactSmoothAnimation = (
         selector: string,
         staggerDelay = 0.05,
-        particleColor = "hsl(217, 91%, 60%)"
+        callback?: () => void
       ) => {
         const elements = document.querySelectorAll(selector);
 
         elements.forEach((element, index) => {
           element.classList.add("magnetic-element");
 
-          // Smooth contact animation
+          // Controlled smooth contact animation
           const tl = window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              end: "bottom 25%",
-              toggleActions: "play none none reverse",
+              end: "bottom 15%",
+              toggleActions: "play none none none",
               fastScrollEnd: isIOS ? 2500 : false,
               preventOverlaps: true,
-            },
-          });
-
-          tl.fromTo(element, 
-            {
-              y: 35,
-              opacity: 0,
-              scale: 0.97,
-              filter: "blur(6px)"
-            },
-            {
-              y: 0,
-              opacity: 1,
-              scale: 1,
-              filter: "blur(0px)",
-              duration: 0.6,
-              ease: "power2.out",
-              delay: index * staggerDelay,
-              onComplete: () => {
-                element.classList.add("assembled");
-                element.classList.remove("disassembled");
-              }
-            }
-          );
-
-          // Smooth exit for contact
-          window.gsap.timeline({
-            scrollTrigger: {
-              trigger: element,
-              start: "bottom 75%",
-              end: "bottom 0%",
+              onEnter: () => {
+                window.gsap.fromTo(element, 
+                  {
+                    y: 35,
+                    opacity: 0,
+                    scale: 0.97,
+                    filter: "blur(3px)"
+                  },
+                  {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    filter: "blur(0px)",
+                    duration: 0.6,
+                    ease: "power2.out",
+                    delay: index * staggerDelay,
+                    onComplete: () => {
+                      element.classList.add("assembled");
+                      element.classList.remove("disassembled");
+                      if (callback && index === elements.length - 1) {
+                        callback();
+                      }
+                    }
+                  }
+                );
+              },
               onLeave: () => {
+                // Gentle fade for contact elements
                 window.gsap.to(element, {
-                  y: -20,
-                  opacity: 0.5,
-                  scale: 0.98,
-                  filter: "blur(1px)",
-                  duration: 0.25,
-                  ease: "power2.in"
+                  opacity: 0.8,
+                  scale: 0.99,
+                  duration: 0.3,
+                  ease: "power2.out"
                 });
               },
               onEnterBack: () => {
                 window.gsap.to(element, {
-                  y: 0,
                   opacity: 1,
                   scale: 1,
-                  filter: "blur(0px)",
                   duration: 0.4,
                   ease: "power2.out"
+                });
+              },
+              onLeaveBack: () => {
+                window.gsap.to(element, {
+                  y: 20,
+                  opacity: 0,
+                  scale: 0.98,
+                  duration: 0.4,
+                  ease: "power2.in"
                 });
               }
             }
@@ -421,11 +453,27 @@ export function useSmoothAnimations() {
         });
       };
 
-      // Apply smooth contact animations
-      createContactSmoothAnimation(".contact-title", 0, "hsl(217, 91%, 60%)");
-      createContactSmoothAnimation(".contact-description", 0.04, "hsl(25, 95%, 53%)");
-      createContactSmoothAnimation(".contact-method", 0.06, "hsl(262, 72%, 57%)");
-      createContactSmoothAnimation(".contact-form", 0.03, "hsl(217, 91%, 60%)");
+      // Initialize elements as hidden
+      const allContactElements = document.querySelectorAll(".contact-title, .contact-description, .contact-method, .contact-form");
+      allContactElements.forEach(element => {
+        element.classList.add("magnetic-element");
+      });
+
+      // Apply smooth contact animations with callback control
+      let completedContactAnimations = 0;
+      const totalContactAnimations = 4;
+      
+      const checkContactComplete = () => {
+        completedContactAnimations++;
+        if (completedContactAnimations === totalContactAnimations && onComplete) {
+          onComplete();
+        }
+      };
+
+      createContactSmoothAnimation(".contact-title", 0, checkContactComplete);
+      createContactSmoothAnimation(".contact-description", 0.04, checkContactComplete);
+      createContactSmoothAnimation(".contact-method", 0.06, checkContactComplete);
+      createContactSmoothAnimation(".contact-form", 0.03, checkContactComplete);
     }
   };
 

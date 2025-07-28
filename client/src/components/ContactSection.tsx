@@ -6,6 +6,7 @@ import emailjs from "@emailjs/browser";
 export default function ContactSection() {
   const { t } = useLanguage();
   const { animateContactSection } = useSmoothAnimations();
+  const [isAnimationReady, setIsAnimationReady] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,7 +19,9 @@ export default function ContactSection() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      animateContactSection();
+      animateContactSection(() => {
+        setIsAnimationReady(true);
+      });
     }, 100);
 
     return () => clearTimeout(timer);
