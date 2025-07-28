@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useLanguage } from "../hooks/useLanguage";
-import { useOptimizedAnimations } from "../hooks/useOptimizedAnimations";
+import { useSmoothAnimations } from "../hooks/useSmoothAnimations";
 
 export default function AboutSection() {
   const { t } = useLanguage();
-  const { animateAboutSection } = useOptimizedAnimations();
+  const { animateAboutSection } = useSmoothAnimations();
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {

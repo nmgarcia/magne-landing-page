@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "../hooks/useLanguage";
-import { useOptimizedAnimations } from "../hooks/useOptimizedAnimations";
+import { useSmoothAnimations } from "../hooks/useSmoothAnimations";
 import emailjs from "@emailjs/browser";
 
 export default function ContactSection() {
   const { t } = useLanguage();
-  const { animateContactSection } = useOptimizedAnimations();
+  const { animateContactSection } = useSmoothAnimations();
   const [formData, setFormData] = useState({
     name: "",
     email: "",

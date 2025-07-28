@@ -36,6 +36,12 @@ A bilingual (Spanish/English) landing page for Magne Software built with React, 
   - Designed admin notification email template with Magne branding
   - Updated contact form to send both emails simultaneously
   - Added comprehensive EmailJS setup documentation
+- Enhanced scroll animations for smoother user experience (January 28, 2025):
+  - Created useSmoothAnimations hook to eliminate jarring animation jumps
+  - Optimized animations specifically for iOS devices with hardware acceleration
+  - Reduced exit animation intensity to prevent abrupt visual transitions
+  - Implemented CSS transitions optimized for mobile and touch devices
+  - Added proper webkit prefixes and will-change properties for better performance
 
 ## User Preferences
 - Language: Spanish/English bilingual support required
