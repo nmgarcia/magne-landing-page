@@ -153,13 +153,13 @@ export function useSmoothAnimations() {
               },
               onLeave: () => {
                 window.gsap.to(element, {
-                  y: -30,
-                  opacity: 0.3,
-                  scale: 0.95,
-                  filter: "blur(2px)",
-                  duration: 0.4,
-                  ease: "power2.in",
-                  delay: index * 0.05,
+                  y: -20,
+                  opacity: 0.6,
+                  scale: 0.98,
+                  filter: "blur(1px)",
+                  duration: 0.6,
+                  ease: "power2.out",
+                  delay: index * 0.03,
                   onComplete: () => {
                     element.classList.add("disassembled");
                     element.classList.remove("assembled");
@@ -172,9 +172,9 @@ export function useSmoothAnimations() {
                   opacity: 1,
                   scale: 1,
                   filter: "blur(0px)",
-                  duration: 0.6,
+                  duration: 0.8,
                   ease: "power2.out",
-                  delay: index * 0.05,
+                  delay: index * 0.04,
                   onComplete: () => {
                     element.classList.add("assembled");
                     element.classList.remove("disassembled");
@@ -183,13 +183,13 @@ export function useSmoothAnimations() {
               },
               onLeaveBack: () => {
                 window.gsap.to(element, {
-                  y: 50,
-                  opacity: 0,
-                  scale: 0.9,
-                  filter: "blur(5px)",
-                  duration: 0.5,
-                  ease: "power2.in",
-                  delay: index * 0.05
+                  y: 30,
+                  opacity: 0.2,
+                  scale: 0.95,
+                  filter: "blur(3px)",
+                  duration: 0.6,
+                  ease: "power2.out",
+                  delay: index * 0.03
                 });
               }
             }
@@ -324,13 +324,13 @@ export function useSmoothAnimations() {
               },
               onLeave: () => {
                 window.gsap.to(element, {
-                  y: -25,
-                  opacity: 0.4,
-                  scale: 0.96,
-                  filter: "blur(1px)",
-                  duration: 0.4,
-                  ease: "power2.in",
-                  delay: index * 0.05,
+                  y: -15,
+                  opacity: 0.7,
+                  scale: 0.99,
+                  filter: "blur(0.5px)",
+                  duration: 0.5,
+                  ease: "power2.out",
+                  delay: index * 0.02,
                   onComplete: () => {
                     element.classList.add("disassembled");
                     element.classList.remove("assembled");
@@ -343,9 +343,9 @@ export function useSmoothAnimations() {
                   opacity: 1,
                   scale: 1,
                   filter: "blur(0px)",
-                  duration: 0.6,
+                  duration: 0.7,
                   ease: "power2.out",
-                  delay: index * 0.05,
+                  delay: index * 0.03,
                   onComplete: () => {
                     element.classList.add("assembled");
                     element.classList.remove("disassembled");
@@ -354,13 +354,13 @@ export function useSmoothAnimations() {
               },
               onLeaveBack: () => {
                 window.gsap.to(element, {
-                  y: 40,
-                  opacity: 0,
-                  scale: 0.95,
-                  filter: "blur(4px)",
+                  y: 25,
+                  opacity: 0.3,
+                  scale: 0.97,
+                  filter: "blur(2px)",
                   duration: 0.5,
-                  ease: "power2.in",
-                  delay: index * 0.05
+                  ease: "power2.out",
+                  delay: index * 0.02
                 });
               }
             }
@@ -445,13 +445,13 @@ export function useSmoothAnimations() {
               },
               onLeave: () => {
                 window.gsap.to(element, {
-                  y: -20,
-                  opacity: 0.5,
-                  scale: 0.98,
-                  filter: "blur(1px)",
-                  duration: 0.3,
-                  ease: "power2.in",
-                  delay: index * 0.03,
+                  y: -10,
+                  opacity: 0.8,
+                  scale: 0.99,
+                  filter: "blur(0.5px)",
+                  duration: 0.4,
+                  ease: "power2.out",
+                  delay: index * 0.02,
                   onComplete: () => {
                     element.classList.add("disassembled");
                     element.classList.remove("assembled");
@@ -464,9 +464,9 @@ export function useSmoothAnimations() {
                   opacity: 1,
                   scale: 1,
                   filter: "blur(0px)",
-                  duration: 0.5,
+                  duration: 0.6,
                   ease: "power2.out",
-                  delay: index * 0.03,
+                  delay: index * 0.02,
                   onComplete: () => {
                     element.classList.add("assembled");
                     element.classList.remove("disassembled");
@@ -475,13 +475,13 @@ export function useSmoothAnimations() {
               },
               onLeaveBack: () => {
                 window.gsap.to(element, {
-                  y: 35,
-                  opacity: 0,
-                  scale: 0.97,
-                  filter: "blur(3px)",
-                  duration: 0.4,
-                  ease: "power2.in",
-                  delay: index * 0.03
+                  y: 20,
+                  opacity: 0.4,
+                  scale: 0.98,
+                  filter: "blur(1px)",
+                  duration: 0.5,
+                  ease: "power2.out",
+                  delay: index * 0.015
                 });
               }
             }

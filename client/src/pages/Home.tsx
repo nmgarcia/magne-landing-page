@@ -9,12 +9,11 @@ import AboutSection from "../components/AboutSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 import { useOptimizedAnimations } from "@/hooks/useOptimizedAnimations";
-import { useSectionNavigation } from "../hooks/useSectionNavigation";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const { initMagneticEffects } = useOptimizedAnimations();
-  const { currentSection, scrollToSection, isScrolling } = useSectionNavigation();
+
 
   useEffect(() => {
     // Initialize magnetic effects after components are loaded
@@ -39,13 +38,7 @@ export default function Home() {
       <MagneticCursor />
       {/* Navigation */}
       <Navigation />
-      {/* Section Navigation Debug (only in dev) */}
-      {import.meta.env.DEV && (
-        <div className="fixed top-20 right-4 z-50 bg-black/80 text-white p-2 rounded text-xs">
-          Current: {currentSection} | Scrolling: {isScrolling ? 'Yes' : 'No'}
-        </div>
-      )}
-      
+
       {/* Main Content */}
       <main>
         <HeroSection isLoading={isLoading} />
