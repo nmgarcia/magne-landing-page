@@ -116,73 +116,46 @@ export function useSmoothAnimations() {
         elements.forEach((element, index) => {
           element.classList.add("magnetic-element");
 
-          // Controlled smooth entrance animation with GSAP
-          const tl = window.gsap.timeline({
+          // Set initial state immediately
+          window.gsap.set(element, {
+            y: 50,
+            opacity: 0,
+            scale: 0.9,
+            filter: "blur(5px)"
+          });
+
+          // Controlled entrance animation only
+          window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              end: "bottom 15%",
+              end: "top 60%",
               toggleActions: "play none none none",
-              // iOS optimizations
               fastScrollEnd: isIOS ? 2500 : false,
               preventOverlaps: true,
-              refreshPriority: index,
               onEnter: () => {
-                // Smooth entrance with controlled timing
-                window.gsap.fromTo(element, 
-                  {
-                    y: 50,
-                    opacity: 0,
-                    scale: 0.9,
-                    filter: "blur(5px)"
-                  },
-                  {
-                    y: 0,
-                    opacity: 1,
-                    scale: 1,
-                    filter: "blur(0px)",
-                    duration: 0.8,
-                    ease: "power2.out",
-                    delay: index * staggerDelay,
-                    onComplete: () => {
-                      element.classList.add("assembled");
-                      element.classList.remove("disassembled");
-                      if (callback && index === elements.length - 1) {
-                        callback();
-                      }
-                    }
-                  }
-                );
-              },
-              onLeave: () => {
-                // Gentle fade out instead of abrupt exit
                 window.gsap.to(element, {
-                  opacity: 0.6,
-                  scale: 0.98,
-                  duration: 0.3,
-                  ease: "power2.out"
-                });
-              },
-              onEnterBack: () => {
-                // Smooth re-entrance
-                window.gsap.to(element, {
+                  y: 0,
                   opacity: 1,
                   scale: 1,
-                  duration: 0.4,
-                  ease: "power2.out"
-                });
-              },
-              onLeaveBack: () => {
-                // Controlled exit back
-                window.gsap.to(element, {
-                  y: 30,
-                  opacity: 0,
-                  scale: 0.95,
-                  duration: 0.4,
-                  ease: "power2.in",
+                  filter: "blur(0px)",
+                  duration: 0.8,
+                  ease: "power2.out",
+                  delay: index * staggerDelay,
                   onComplete: () => {
-                    element.classList.add("disassembled");
-                    element.classList.remove("assembled");
+                    element.classList.add("assembled");
+                    element.classList.remove("disassembled");
+                    // Set final stable state
+                    window.gsap.set(element, {
+                      y: 0,
+                      opacity: 1,
+                      scale: 1,
+                      filter: "blur(0px)",
+                      clearProps: "transform,filter"
+                    });
+                    if (callback && index === elements.length - 1) {
+                      callback();
+                    }
                   }
                 });
               }
@@ -281,65 +254,47 @@ export function useSmoothAnimations() {
         elements.forEach((element, index) => {
           element.classList.add("magnetic-element");
 
-          // Controlled smooth about animation
-          const tl = window.gsap.timeline({
+          // Set initial state immediately for about
+          window.gsap.set(element, {
+            y: 40,
+            opacity: 0,
+            scale: 0.95,
+            filter: "blur(4px)"
+          });
+
+          // Controlled about entrance animation only
+          window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              end: "bottom 15%",
+              end: "top 60%",
               toggleActions: "play none none none",
               fastScrollEnd: isIOS ? 2500 : false,
               preventOverlaps: true,
               onEnter: () => {
-                window.gsap.fromTo(element, 
-                  {
-                    y: 40,
-                    opacity: 0,
-                    scale: 0.95,
-                    filter: "blur(4px)"
-                  },
-                  {
-                    y: 0,
-                    opacity: 1,
-                    scale: 1,
-                    filter: "blur(0px)",
-                    duration: 0.7,
-                    ease: "power2.out",
-                    delay: index * staggerDelay,
-                    onComplete: () => {
-                      element.classList.add("assembled");
-                      element.classList.remove("disassembled");
-                      if (callback && index === elements.length - 1) {
-                        callback();
-                      }
-                    }
-                  }
-                );
-              },
-              onLeave: () => {
-                // Gentle fade instead of jump
                 window.gsap.to(element, {
-                  opacity: 0.7,
-                  scale: 0.98,
-                  duration: 0.3,
-                  ease: "power2.out"
-                });
-              },
-              onEnterBack: () => {
-                window.gsap.to(element, {
+                  y: 0,
                   opacity: 1,
                   scale: 1,
-                  duration: 0.4,
-                  ease: "power2.out"
-                });
-              },
-              onLeaveBack: () => {
-                window.gsap.to(element, {
-                  y: 25,
-                  opacity: 0,
-                  scale: 0.96,
-                  duration: 0.4,
-                  ease: "power2.in"
+                  filter: "blur(0px)",
+                  duration: 0.7,
+                  ease: "power2.out",
+                  delay: index * staggerDelay,
+                  onComplete: () => {
+                    element.classList.add("assembled");
+                    element.classList.remove("disassembled");
+                    // Lock final state to prevent jumps
+                    window.gsap.set(element, {
+                      y: 0,
+                      opacity: 1,
+                      scale: 1,
+                      filter: "blur(0px)",
+                      clearProps: "transform,filter"
+                    });
+                    if (callback && index === elements.length - 1) {
+                      callback();
+                    }
+                  }
                 });
               }
             }
@@ -387,65 +342,47 @@ export function useSmoothAnimations() {
         elements.forEach((element, index) => {
           element.classList.add("magnetic-element");
 
-          // Controlled smooth contact animation
-          const tl = window.gsap.timeline({
+          // Set initial state immediately for contact
+          window.gsap.set(element, {
+            y: 35,
+            opacity: 0,
+            scale: 0.97,
+            filter: "blur(3px)"
+          });
+
+          // Controlled contact entrance animation only
+          window.gsap.timeline({
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
-              end: "bottom 15%",
+              end: "top 60%",
               toggleActions: "play none none none",
               fastScrollEnd: isIOS ? 2500 : false,
               preventOverlaps: true,
               onEnter: () => {
-                window.gsap.fromTo(element, 
-                  {
-                    y: 35,
-                    opacity: 0,
-                    scale: 0.97,
-                    filter: "blur(3px)"
-                  },
-                  {
-                    y: 0,
-                    opacity: 1,
-                    scale: 1,
-                    filter: "blur(0px)",
-                    duration: 0.6,
-                    ease: "power2.out",
-                    delay: index * staggerDelay,
-                    onComplete: () => {
-                      element.classList.add("assembled");
-                      element.classList.remove("disassembled");
-                      if (callback && index === elements.length - 1) {
-                        callback();
-                      }
-                    }
-                  }
-                );
-              },
-              onLeave: () => {
-                // Gentle fade for contact elements
                 window.gsap.to(element, {
-                  opacity: 0.8,
-                  scale: 0.99,
-                  duration: 0.3,
-                  ease: "power2.out"
-                });
-              },
-              onEnterBack: () => {
-                window.gsap.to(element, {
+                  y: 0,
                   opacity: 1,
                   scale: 1,
-                  duration: 0.4,
-                  ease: "power2.out"
-                });
-              },
-              onLeaveBack: () => {
-                window.gsap.to(element, {
-                  y: 20,
-                  opacity: 0,
-                  scale: 0.98,
-                  duration: 0.4,
-                  ease: "power2.in"
+                  filter: "blur(0px)",
+                  duration: 0.6,
+                  ease: "power2.out",
+                  delay: index * staggerDelay,
+                  onComplete: () => {
+                    element.classList.add("assembled");
+                    element.classList.remove("disassembled");
+                    // Lock final state to prevent any jumps
+                    window.gsap.set(element, {
+                      y: 0,
+                      opacity: 1,
+                      scale: 1,
+                      filter: "blur(0px)",
+                      clearProps: "transform,filter"
+                    });
+                    if (callback && index === elements.length - 1) {
+                      callback();
+                    }
+                  }
                 });
               }
             }
