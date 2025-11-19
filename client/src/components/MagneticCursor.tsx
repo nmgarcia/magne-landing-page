@@ -17,8 +17,8 @@ export default function MagneticCursor() {
       const diffX = mouseX - cursorX;
       const diffY = mouseY - cursorY;
       
-      cursorX += diffX * 0.1;
-      cursorY += diffY * 0.1;
+      cursorX += diffX * 0.25;
+      cursorY += diffY * 0.25;
       
       cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
       
