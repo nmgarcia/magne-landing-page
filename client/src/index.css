@@ -241,8 +241,6 @@
   .service-card.magnetic-element {
     transform-style: preserve-3d;
     border-radius: 16px;
-    aspect-ratio: 1;
-    min-height: 280px;
     will-change: transform, opacity, filter;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
