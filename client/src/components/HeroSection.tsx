@@ -145,17 +145,17 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
                 className="hero-title font-montserrat text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 leading-tight"
                 style={{ opacity: opacity }}
               >
-                <div className="magnetic-text-line overflow-hidden">
+                <div className="magnetic-text-line overflow-hidden pb-2">
                   <span className="magnetic-word inline-block">
                     {t("heroTitle1")}
                   </span>
                 </div>
-                <div className="magnetic-text-line overflow-hidden">
+                <div className="magnetic-text-line overflow-hidden pb-2">
                   <span className="magnetic-word inline-block magne-gradient-text gradient-shift">
                     {t("heroTitle2")}
                   </span>
                 </div>
-                <div className="magnetic-text-line overflow-hidden">
+                <div className="magnetic-text-line overflow-hidden pb-2">
                   <span className="magnetic-word inline-block">
                     {t("heroTitle3")}
                   </span>
